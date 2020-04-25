@@ -180,7 +180,7 @@ def checkloot():
     os.chdir(directory)
     # print("Checking loot")
     ok = pyautogui.locateOnScreen('ok.png', confidence=.98)
-    sellrune = pyautogui.locateOnScreen('sellrune.png', confidence = .96)
+    sellrune = pyautogui.locateOnScreen('sellrune.png', confidence = .94)
     if sellrune is not None:
         ok = None
         # print("Rune Drop")
@@ -382,7 +382,8 @@ def evalrune():
         print("Keeping rune " + '\n' + str(reason))
         pyautogui.moveTo(sellrunecoord)
         pyautogui.moveRel(150, 0, 0)
-        pyautogui.click
+        time.sleep(.2)
+        pyautogui.click()
         runeskept += 1
 
 
