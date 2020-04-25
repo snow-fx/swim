@@ -366,7 +366,7 @@ def evalrune():
     if sixstar is not None and runegrade == 2:
         selltherune = True
         reason = "Six star blue"
-    if sixstar is not None and ('360' in runesubs[4] or '22' in runesubs[4]) and (runeslot is '(2)' or runeslot is '(4)' or runeslot is '(6)':
+    if sixstar is not None and ('360' in runesubs[4] or '22' in runesubs[4]) and (runeslot is '(2)' or runeslot is '(4)' or runeslot is '(6)'):
         selltherune = True
         reason = "Flat main stat"
     # print("==========================")
