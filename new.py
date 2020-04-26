@@ -1,13 +1,15 @@
 # cv2.cvtColor takes a numpy ndarray as an argument
-import numpy as np
+# import numpy as np
 import pytesseract
 import time
 import cv2
 import os
 import pyautogui
 import random
-from PIL import ImageGrab, ImageEnhance, Image
+from PIL import ImageGrab, Image  # , ImageEnhance
 from os import system, name
+
+pyautogui.PAUSE = 2.5
 
 
 def clear():
@@ -49,8 +51,12 @@ def lookforpopups():
         if closewin is not None:
             print("Found a popup")
             pyautogui.moveTo(closewin)
-            pyautogui.moveRel(random.randint(5,15),random.randint(5,15),0)
-            pyautogui.click()
+            pyautogui.moveRel(random.randint(0, 10), random.randint(0, 10), 1)
+            pyautogui.mouseDown()
+            time.sleep(random.randrange(123, 357) / 1000)
+            pyautogui.mouseUp()
+            # pyautogui.click()
+            print(pyautogui.position())
             time.sleep(random.randint(1, 3))
             closewin = None
         time.sleep(1)
@@ -69,17 +75,25 @@ def cairos():
         if clickbattle is not None:
             # print("Going to map")
             pyautogui.moveTo(clickbattle)
-            pyautogui.moveRel(random.randint(5,15),random.randint(5,15),0)
-            pyautogui.click()
-            #pyautogui.click(clickbattle)
+            pyautogui.moveRel(random.randint(0, 25), random.randint(0, 25), 1)
+            pyautogui.mouseDown()
+            time.sleep(random.randrange(123, 357) / 1000)
+            pyautogui.mouseUp()
+            # pyautogui.click()
+            print(pyautogui.position())
+            # pyautogui.click(clickbattle)
             time.sleep(random.randint(2, 4))
             # clickbattle = None
         clickcairos = pyautogui.locateOnScreen('cairos.png', confidence=.8)
         if clickcairos is not None:
             pyautogui.moveTo(clickcairos)
-            pyautogui.moveRel(random.randint(5,15),random.randint(5,15),0)
-            pyautogui.click()
-            #pyautogui.click(clickcairos)
+            pyautogui.moveRel(random.randint(-25, 25), random.randint(-25, 25), 1)
+            pyautogui.mouseDown()
+            time.sleep(random.randrange(123, 357) / 1000)
+            pyautogui.mouseUp()
+            # pyautogui.click()
+            print(pyautogui.position())
+            # pyautogui.click(clickcairos)
             time.sleep(random.randint(2, 4))
 #        clickbattle = None
         clickcairos = None
@@ -108,18 +122,31 @@ def startbattle():
         print("Gonna run dungeon:" + str(currentdung))
         # clickdung = pyautogui.locateOnScreen(rundung, confidence=.8)
         pyautogui.moveTo(rundung)
-        pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 0)
-        pyautogui.click()
-        #pyautogui.click(rundung)
+        pyautogui.moveRel(random.randint(0, 15), random.randint(0, 15), 1)
+        pyautogui.mouseDown()
+        time.sleep(random.randrange(123, 357) / 1000)
+        pyautogui.mouseUp()
+        # pyautogui.click()
+        print(pyautogui.position())
+        # pyautogui.click(rundung)
         time.sleep(2)
         clickb10 = pyautogui.locateOnScreen('b10.png', confidence=.8)
         if clickb10 is not None:
             # print(str(clickb10))
             pyautogui.moveTo(clickb10)
-            pyautogui.moveRel(170,0,0)
-            pyautogui.click()
-            time.sleep(4)
-            pyautogui.click()
+            pyautogui.moveRel(170, 0, 1)
+            pyautogui.mouseDown()
+            time.sleep(random.randrange(123, 357) / 1000)
+            pyautogui.mouseUp()
+            # pyautogui.click()
+            print(pyautogui.position())
+            time.sleep(random.randint(2, 5))
+            pyautogui.moveRel(random.randint(0, 2), random.randint(0, 2), 1)
+            pyautogui.mouseDown()
+            time.sleep(random.randrange(123, 357) / 1000)
+            pyautogui.mouseUp()
+            # pyautogui.click()
+            print(pyautogui.position())
             # clickb10 = (clickb10.left+300, clickb10.top, clickb10.width, clickb10.height)
             # clickb10.left += 300
             # print(str(clickb10))
@@ -128,10 +155,14 @@ def startbattle():
     if autoormanual is not None:
         print("Starting auto battle")
         pyautogui.moveTo(autoormanual)
-        pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 0)
-        pyautogui.click()
+        pyautogui.moveRel(random.randint(0, 5), random.randint(0, 5), 1)
+        pyautogui.mouseDown()
+        time.sleep(random.randrange(123, 357) / 1000)
+        pyautogui.mouseUp()
+        print(pyautogui.position())
+        # pyautogui.click()
 
-        #pyautogui.click(autoormanual)
+        # pyautogui.click(autoormanual)
         time.sleep(.7)
         autoormanual = None
 
@@ -144,6 +175,10 @@ def rundungeons():
     global lootdrops
     global runedrops
     global runeskept
+    global doublekill
+    global refills
+    doublekill = 0
+    x = 0
     lostbattle = None
     wonbattle = None
     totalruns = 0
@@ -154,12 +189,23 @@ def rundungeons():
             print("Lost a run")
             time.sleep(random.randint(5, 50))
             pyautogui.moveTo(lostbattle)
-            pyautogui.moveRel(170, 0, 0)
-            time.sleep(3)
-            pyautogui.click()
-            time.sleep(3)
-            pyautogui.click()
-            time.sleep(3)
+            pyautogui.moveRel(170, 0, 1)
+            time.sleep(random.randint(2, 5))
+            pyautogui.mouseDown()
+            time.sleep(random.randrange(123, 357) / 1000)
+            pyautogui.mouseUp()
+            print(pyautogui.position())
+            # pyautogui.click()
+            # print(pyautogui.position())
+            time.sleep(random.randint(2, 5))
+            pyautogui.moveRel(random.randint(-7, 7), random.randint(-7, 7), 1)
+            pyautogui.mouseDown()
+            time.sleep(random.randrange(123, 357) / 1000)
+            pyautogui.mouseUp()
+            print(pyautogui.position())
+            # pyautogui.click()
+            # print(pyautogui.position())
+            time.sleep(random.randint(2, 5))
             totalruns += 1
             print(str(totalruns) + "/" + str(howmanyruns) + " runs completed")
             print("Total loot  : " + str(lootdrops))
@@ -171,37 +217,50 @@ def rundungeons():
             # print("Finished a run")
             time.sleep(3)
             wonbattle = pyautogui.locateOnScreen('wonbattle.png', confidence=.9)
-            pyautogui.moveTo(wonbattle)
-            pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 0)
-            pyautogui.click()
-            x = random.randint(1, 50)
+            # pyautogui.moveTo(wonbattle)
+            # pyautogui.moveRel(random.randint(-100, 150), random.randint(-39, 150), 1)
+            # pyautogui.click()
+            if doublekill > 0 or doublekill is None:
+                x = random.randint(1, 50)
+            else:
+                doublekill = 0
             if x < 20:
                 y = random.randint(3, 8)
-                #time.sleep(random.randint(3, 8))
+                # time.sleep(random.randint(3, 8))
             if 20 < x < 35:
                 y = random.randint(5, 20)
-                #time.sleep(random.randint(5, 20))
+                # time.sleep(random.randint(5, 20))
             if 35 < x < 45:
                 y = random.randint(10, 30)
-                #time.sleep(random.randint(10, 30))
+                # time.sleep(random.randint(10, 30))
             if 45 < x < 49:
                 y = random.randint(20, 60)
-                #time.sleep(random.randint(20, 60))
+                # time.sleep(random.randint(20, 60))
             if x == 50:
                 y = random.randint(60, 480)
-                #time.sleep(random.randint(60, 480))
+                # time.sleep(random.randint(60, 480))
             if y == 0 or y is None:
                 y = 4
-            print("Pausing for: " + str(y) + " secs.")
+            print("Pausing for " + str(y) + " secs.")
             time.sleep(y)
-            #time.sleep(random.randint(4, 120))
+            # time.sleep(random.randint(4, 120))
             pyautogui.moveTo(wonbattle)
-            pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 0)
-            pyautogui.click()
-
-            #pyautogui.click(wonbattle)
-            time.sleep(.5)
-            #pyautogui.click(wonbattle)
+            pyautogui.moveRel(random.randint(-100, 150), random.randint(-39, 150), 1)
+            pyautogui.mouseDown()
+            time.sleep(random.randrange(123, 357) / 1000)
+            pyautogui.mouseUp()
+            # pyautogui.click()
+            print(pyautogui.position())
+            # pyautogui.click(wonbattle)
+            x = random.randint(1, 10)
+            pyautogui.moveRel(random.randint(-7, 7), random.randint(-7, 7), .2)
+            time.sleep(x / 10)
+            pyautogui.mouseDown()
+            time.sleep(random.randrange(123, 357) / 1000)
+            pyautogui.mouseUp()
+            # pyautogui.click()
+            print(pyautogui.position())
+            # pyautogui.click(wonbattle)
             checkloot()
             wonbattle = None
         else:
@@ -210,33 +269,48 @@ def rundungeons():
         if prepare is not None:
             print("Starting over")
             pyautogui.moveTo(prepare)
-            pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 0)
-            pyautogui.click()
+            pyautogui.moveRel(random.randint(0, 15), random.randint(0, 15), 1)
+            pyautogui.mouseDown()
+            time.sleep(random.randrange(123, 357) / 1000)
+            pyautogui.mouseUp()
+            print(pyautogui.position())
+            # pyautogui.click()
 
-            #pyautogui.click(prepare)
-            time.sleep(2)
+            # pyautogui.click(prepare)
+            time.sleep(random.randint(5, 13))
             indungbattle = pyautogui.locateOnScreen('indungbattle.png', confidence=.9)
             pyautogui.moveTo(indungbattle)
-            pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 0)
-            pyautogui.click()
+            pyautogui.moveRel(random.randint(-20, 35), random.randint(-10, 25), 1)
+            pyautogui.mouseDown()
+            time.sleep(random.randrange(123, 357) / 1000)
+            pyautogui.mouseUp()
+            print(pyautogui.position())
+            # pyautogui.click()
 
-            #pyautogui.click(indungbattle)
-            time.sleep(5)
+            # pyautogui.click(indungbattle)
+            time.sleep(random.randint(1, 3))
         otherloot = pyautogui.locateOnScreen('otherloot.png', confidence=.96)
         if otherloot is not None:
             pyautogui.moveTo(otherloot)
-            pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 0)
-            pyautogui.click()
+            pyautogui.moveRel(random.randint(-10, 15), random.randint(-10, 15), 1)
+            pyautogui.mouseDown()
+            time.sleep(random.randrange(123, 357) / 1000)
+            pyautogui.mouseUp()
+            print(pyautogui.position())
+            # pyautogui.click()
 
-            #(otherloot)
-            time.sleep(2)
+            # (otherloot)
+            time.sleep(random.randint(1, 3))
         replay = pyautogui.locateOnScreen('replay.png', confidence=.9)
         if replay is not None:
             # print("Lets do it again")
             pyautogui.moveTo(replay)
-            pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 0)
-            pyautogui.click(replay)
-
+            pyautogui.moveRel(random.randint(-80, 173), random.randint(-18, 25), 0.5)
+            pyautogui.mouseDown()
+            time.sleep(random.randrange(123, 357) / 1000)
+            pyautogui.mouseUp()
+            # pyautogui.click(replay)
+            print(pyautogui.position())
             # pyautogui.click(replay)
             totalruns += 1
             print(str(totalruns) + "/" + str(howmanyruns) + " runs completed")
@@ -244,51 +318,75 @@ def rundungeons():
             print("Total Runes : " + str(runedrops))
             print("Runes Kept  : " + str(runeskept))
             print("Refills     : " + str(refills))
-            time.sleep(3)
+            time.sleep(random.randint(1, 3))
         shoprefill = pyautogui.locateOnScreen('shop.png', confidence=.98)
         if shoprefill is not None:
             print("Need to refill")
             pyautogui.moveTo(shoprefill)
-            pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 0)
-            pyautogui.click()
+            pyautogui.moveRel(random.randint(0, 15), random.randint(0, 15), 1)
+            pyautogui.mouseDown()
+            time.sleep(random.randrange(123, 357) / 1000)
+            pyautogui.mouseUp()
+            print(pyautogui.position())
+            # pyautogui.click()
 
             # pyautogui.click(shoprefill)
-            time.sleep(2)
+            time.sleep(random.randint(1, 3))
             rechargeenergy = pyautogui.locateOnScreen('rechargeenergy.png', confidence=.98)
             pyautogui.moveTo(rechargeenergy)
-            pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 0)
-            pyautogui.click()
+            pyautogui.moveRel(random.randint(0, 15), random.randint(0, 15), 1)
+            pyautogui.mouseDown()
+            time.sleep(random.randrange(123, 357) / 1000)
+            pyautogui.mouseUp()
+            print(pyautogui.position())
+            # pyautogui.click()
 
             # pyautogui.click(rechargeenergy)
-            time.sleep(2)
+            time.sleep(random.randint(1, 3))
             quiz = pyautogui.locateOnScreen('quiz.png', confidence=.98)
             if quiz is not None:
                 print("QUIZ!!!")
                 pyautogui.moveTo(quix)
-                pyautogui.moveRel(350, 0, 0)
-                pyautogui.click()
+                pyautogui.moveRel(350, 0, 1)
+                pyautogui.mouseDown()
+                time.sleep(random.randrange(123, 357) / 1000)
+                pyautogui.mouseUp()
+                print(pyautogui.position())
+                # pyautogui.click()
                 sys.exit()
             yes = pyautogui.locateOnScreen('yes.png', confidence=.98)
             pyautogui.moveTo(yes)
-            pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 0)
-            pyautogui.click()
+            pyautogui.moveRel(random.randint(0, 15), random.randint(0, 15), 1)
+            pyautogui.mouseDown()
+            time.sleep(random.randrange(123, 357) / 1000)
+            pyautogui.mouseUp()
+            print(pyautogui.position())
+            # pyautogui.click()
 
             # pyautogui.click(yes)
-            time.sleep(2)
+            time.sleep(random.randint(1, 3))
             ok2 = pyautogui.locateOnScreen('ok2.png', confidence=.98)
             pyautogui.moveTo(ok2)
-            pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 0)
-            pyautogui.click()
+            pyautogui.moveRel(random.randint(0, 15), random.randint(0, 15), 1)
+            pyautogui.mouseDown()
+            time.sleep(random.randrange(123, 357) / 1000)
+            pyautogui.mouseUp()
+            print(pyautogui.position())
+            # pyautogui.click()
 
             # pyautogui.click(ok2)
-            time.sleep(2)
+            time.sleep(random.randint(1, 3))
             closewindow = pyautogui.locateOnScreen('closerefill.png', confidence=.98)
             pyautogui.moveTo(closewindow)
-            pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 0)
-            pyautogui.click()
+            pyautogui.moveRel(random.randint(0, 15), random.randint(0, 15), 1)
+            pyautogui.mouseDown()
+            time.sleep(random.randrange(123, 357) / 1000)
+            pyautogui.mouseUp()
+            print(pyautogui.position())
+            # pyautogui.click()
 
             # pyautogui.click(closewindow)
-            time.sleep(2)
+            time.sleep(random.randint(1, 3))
             refills += 1
 
 
@@ -299,6 +397,8 @@ def checkloot():
     global totalruns
     global howmanyrun
     global refills
+    global doublekill
+    doublekill = 1
     directory = r'C:\swim\images'
     os.chdir(directory)
     # print("Checking loot")
@@ -313,30 +413,41 @@ def checkloot():
         # print("Dropped loot")
         lootdrops += 1
         pyautogui.moveTo(ok)
-        pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 0)
-        pyautogui.click()
+        pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 1)
+        pyautogui.mouseDown()
+        time.sleep(random.randrange(123, 357) / 1000)
+        pyautogui.mouseUp()
+        print(pyautogui.position())
+        # pyautogui.click()
 
-        #pyautogui.click(ok)
+        # pyautogui.click(ok)
         time.sleep(3)
         # ok = None
     otherloot = pyautogui.locateOnScreen('otherloot.png', confidence=.95)
     if otherloot is not None:
         # print("Found some event loot")
         pyautogui.moveTo(otherloot)
-        pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 0)
-        pyautogui.click()
+        pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 1)
+        pyautogui.mouseDown()
+        time.sleep(random.randrange(123, 357) / 1000)
+        pyautogui.mouseUp()
+        print(pyautogui.position())
+        # pyautogui.click()
 
-        #pyautogui.click(otherloot)
+        # pyautogui.click(otherloot)
         lootdrops += 1
         time.sleep(3)
     replay = pyautogui.locateOnScreen('replay.png', confidence=.9)
     if replay is not None:
         # print("Lets do it again")
         pyautogui.moveTo(replay)
-        pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 0)
-        pyautogui.click(replay)
-
-        #pyautogui.click(replay)
+        pyautogui.moveRel(random.randint(-80, 173), random.randint(-18, 25), 0.5)
+        pyautogui.mouseDown()
+        time.sleep(random.randrange(123, 357) / 1000)
+        pyautogui.mouseUp()
+        # pyautogui.click(replay)
+        print(pyautogui.position())
+        # pyautogui.click(replay)
         totalruns += 1
         print(str(totalruns) + "/" + str(howmanyruns) + " runs completed")
         print("Total loot  : " + str(lootdrops))
@@ -348,46 +459,70 @@ def checkloot():
     if shoprefill is not None:
         print("Need to refill")
         pyautogui.moveTo(shoprefill)
-        pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 0)
-        pyautogui.click()
+        pyautogui.moveRel(random.randint(0, 15), random.randint(0, 15), 1)
+        pyautogui.mouseDown()
+        time.sleep(random.randrange(123, 357) / 1000)
+        pyautogui.mouseUp()
+        print(pyautogui.position())
+        # pyautogui.click()
 
-        #pyautogui.click(shoprefill)
-        time.sleep(2)
+        # pyautogui.click(shoprefill)
+        time.sleep(random.randint(1, 3))
         rechargeenergy = pyautogui.locateOnScreen('rechargeenergy.png', confidence=.98)
         pyautogui.moveTo(rechargeenergy)
-        pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 0)
-        pyautogui.click()
+        pyautogui.moveRel(random.randint(0, 25), random.randint(0, 25), 1)
+        pyautogui.mouseDown()
+        time.sleep(random.randrange(123, 357) / 1000)
+        pyautogui.mouseUp()
+        print(pyautogui.position())
+        # pyautogui.click()
 
-        #pyautogui.click(rechargeenergy)
-        time.sleep(2)
+        # pyautogui.click(rechargeenergy)
+        time.sleep(random.randint(1, 3))
         quiz = pyautogui.locateOnScreen('quiz.png', confidence=.98)
         if quiz is not None:
             print("QUIZ!!!")
             pyautogui.moveTo(quix)
-            pyautogui.moveRel(350, 0, 0)
-            pyautogui.click()
+            pyautogui.moveRel(350, 0, 1)
+            pyautogui.mouseDown()
+            time.sleep(random.randrange(123, 357) / 1000)
+            pyautogui.mouseUp()
+            print(pyautogui.position())
+            # pyautogui.click()
             sys.exit()
         yes = pyautogui.locateOnScreen('yes.png', confidence=.98)
         pyautogui.moveTo(yes)
-        pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 0)
-        pyautogui.click()
+        pyautogui.moveRel(random.randint(0, 20), random.randint(0, 20), 1)
+        pyautogui.mouseDown()
+        time.sleep(random.randrange(123, 357) / 1000)
+        pyautogui.mouseUp()
+        print(pyautogui.position())
+        # pyautogui.click()
 
-        #pyautogui.click(yes)
-        time.sleep(2)
+        # pyautogui.click(yes)
+        time.sleep(random.randint(1, 3))
         ok2 = pyautogui.locateOnScreen('ok2.png', confidence=.98)
         pyautogui.moveTo(ok2)
-        pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 0)
-        pyautogui.click()
+        pyautogui.moveRel(random.randint(0, 15), random.randint(0, 15), 1)
+        pyautogui.mouseDown()
+        time.sleep(random.randrange(123, 357) / 1000)
+        pyautogui.mouseUp()
+        print(pyautogui.position())
+        # pyautogui.click()
 
-        #pyautogui.click(ok2)
-        time.sleep(2)
+        # pyautogui.click(ok2)
+        time.sleep(random.randint(1, 3))
         closewindow = pyautogui.locateOnScreen('closerefill.png', confidence=.98)
         pyautogui.moveTo(closewindow)
-        pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 0)
-        pyautogui.click()
+        pyautogui.moveRel(random.randint(0, 15), random.randint(0, 15), 1)
+        pyautogui.mouseDown()
+        time.sleep(random.randrange(123, 357) / 1000)
+        pyautogui.mouseUp()
+        print(pyautogui.position())
+        # pyautogui.click()
 
-        #pyautogui.click(closewindow)
-        time.sleep(2)
+        # pyautogui.click(closewindow)
+        time.sleep(random.randint(1, 3))
         refills += 1
 
 
@@ -427,17 +562,17 @@ def evalrune():
     y1 = coord[1]
     # print(str(coord))
     # print(str(x1) + " " + str(y1))
-    #top part of rune
+    # top part of rune
     # print(str(x1-47) + " " + str(y1-261) + " " + str(x1+148) + " " + str(y1-166))
     im1 = ImageGrab.grab(bbox=(x1-76, y1-255, x1+220, y1-221))
     im2 = ImageGrab.grab(bbox=(x1-47, y1-221, x1+148, y1-156))
-    #stats of rune
+    # stats of rune
     im3 = ImageGrab.grab(bbox=(x1-117, y1-157, x1+128, y1-62))
-    #merge into one image
-    #get_concat_v_cut(im1, im2, im3).save("conc.png", "png")
-    #get_concat_v_cut(getconcat_v_cut(im1, im2), im3).save("conc.png", "png")
+    # merge into one image
+    # get_concat_v_cut(im1, im2, im3).save("conc.png", "png")
+    # get_concat_v_cut(getconcat_v_cut(im1, im2), im3).save("conc.png", "png")
     get_concat_v_multi_blank([im1, im2, im3]).save("conc.png", "png")
-    #pre processing
+    # pre processing
     image = cv2.imread('conc.png', 0)
     cv2.imwrite("gray.png", image)
     image = cv2.bitwise_not(image)
@@ -529,21 +664,33 @@ def evalrune():
     if selltherune:
         print("Selling rune " + '\n' + str(reason))
         pyautogui.moveTo(sellrunecoord)
-        pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 0)
-        pyautogui.click()
+        pyautogui.moveRel(random.randint(0, 15), random.randint(0, 15), 1)
+        pyautogui.mouseDown()
+        time.sleep(random.randrange(123, 357) / 1000)
+        pyautogui.mouseUp()
+        print(pyautogui.position())
+        # pyautogui.click()
 
-        #pyautogui.click(sellrunecoord)
-        time.sleep(2)
-        pyautogui.moveRel(0, -100, 0)
-        pyautogui.click()
-        time.sleep(3)
+        # pyautogui.click(sellrunecoord)
+        time.sleep(random.randint(1, 3))
+        pyautogui.moveRel(random.randint(-15, 15), random.randint(-110, -90), 1)
+        pyautogui.mouseDown()
+        time.sleep(random.randrange(123, 357) / 1000)
+        pyautogui.mouseUp()
+        print(pyautogui.position())
+        # pyautogui.click()
+        time.sleep(random.randint(1, 3))
     else:
         # ok = pyautogui.locateOnScreen('ok.png', confidence=.98)
         print("Keeping rune " + '\n' + str(reason))
         pyautogui.moveTo(sellrunecoord)
-        pyautogui.moveRel(150, 0, 0)
-        time.sleep(.2)
-        pyautogui.click()
+        pyautogui.moveRel(150, 0, 1)
+        time.sleep(random.randint(1, 3))
+        pyautogui.mouseDown()
+        time.sleep(random.randrange(123, 357) / 1000)
+        pyautogui.mouseUp()
+        print(pyautogui.position())
+        # pyautogui.click()
         runeskept += 1
 
 

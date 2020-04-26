@@ -5,34 +5,51 @@
       <w>autoormanual</w>
       <w>cairos</w>
       <w>capgray</w>
+      <w>checkloot</w>
       <w>clickb</w>
       <w>clickbattle</w>
       <w>clickcairos</w>
       <w>clickdung</w>
       <w>closewin</w>
+      <w>closewindow</w>
+      <w>currentdung</w>
       <w>deleteme</w>
       <w>dragsruns</w>
       <w>dungeonruns</w>
       <w>evalrune</w>
+      <w>fivestar</w>
       <w>giantsruns</w>
       <w>lookforpopups</w>
       <w>necroruns</w>
       <w>otherloot</w>
+      <w>pyautogui</w>
+      <w>rechargeenergy</w>
       <w>runarena</w>
       <w>rundhole</w>
       <w>rundrags</w>
+      <w>rundung</w>
       <w>rundungeons</w>
       <w>rundungs</w>
+      <w>runegrade</w>
+      <w>runeinnate</w>
+      <w>runeslot</w>
+      <w>runestar</w>
+      <w>runesubs</w>
+      <w>runetype</w>
+      <w>runeword</w>
       <w>rungiants</w>
       <w>runnecro</w>
       <w>sellrune</w>
       <w>sellrunecoord</w>
       <w>selltherune</w>
+      <w>shoprefill</w>
+      <w>sixstar</w>
       <w>startbattle</w>
       <w>tesseract</w>
       <w>tesstr</w>
       <w>tesstrgray</w>
       <w>totalruns</w>
+      <w>wonbattle</w>
     </words>
   </dictionary>
 </component>
