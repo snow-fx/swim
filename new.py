@@ -8,8 +8,15 @@ import pyautogui
 import random
 from PIL import ImageGrab, Image  # , ImageEnhance
 from os import system, name
+from datetime import datetime
 
-pyautogui.PAUSE = 2.5
+pyautogui.PAUSE = .25
+
+
+def converttostr(input_seq, seperator):
+   # Join all the strings in list
+   final_str = seperator.join(input_seq)
+   return final_str
 
 
 def clear():
@@ -213,10 +220,11 @@ def rundungeons():
             print("Runes Kept  : " + str(runeskept))
             print("Refills     : " + str(refills))
         wonbattle = pyautogui.locateOnScreen('wonbattle.png', confidence=.9)
-        if wonbattle is not None:
+        sellrune = pyautogui.locateOnScreen('sellrune.png', confidence=.94)
+        if wonbattle is not None and sellrune is None:
             # print("Finished a run")
             time.sleep(3)
-            wonbattle = pyautogui.locateOnScreen('wonbattle.png', confidence=.9)
+            wonbattle = pyautogui.locateOnScreen('wonbattle.png', confidence=.95)
             # pyautogui.moveTo(wonbattle)
             # pyautogui.moveRel(random.randint(-100, 150), random.randint(-39, 150), 1)
             # pyautogui.click()
@@ -264,6 +272,8 @@ def rundungeons():
             checkloot()
             wonbattle = None
         else:
+            if sellrune is not None:
+                checkloot()
             time.sleep(random.randint(2,10))
         prepare = pyautogui.locateOnScreen('prepare.png', confidence=.95)
         if prepare is not None:
@@ -597,11 +607,11 @@ def evalrune():
     if hero is not None:
         # print("Hero")
         runegrade = 3
-        runeword = "Hero"
+        runeword = "Hero   "
     if magic is not None:
         # print("Magic")
         runegrade = 2
-        runeword = "Magic"
+        runeword = "Magic  "
     # runesubs = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     runesubs = runestr.split()
     if 'Dmg' in runesubs:
@@ -648,9 +658,6 @@ def evalrune():
     if fivestar is not None:
         selltherune = True
         reason = "Five star rune"
-    if fivestar is not None and 'Swift' in runesubs and 'SPD' in runesubs and runegrade > 2:
-        selltherune = False
-        reason = "swift with speed"
     if sixstar is not None and runegrade > 2:
         selltherune = False
         reason = "Six star hero+"
@@ -660,6 +667,12 @@ def evalrune():
     if sixstar is not None and ('360' in runesubs[4] or '22' in runesubs[4]) and (runeslot == '(2)' or runeslot == '(4)' or runeslot == '(6)'):
         selltherune = True
         reason = "Flat main stat"
+    if fivestar is not None and 'Swift' in runesubs and 'SPD' in runesubs and runegrade > 2:
+        selltherune = False
+        reason = "swift with speed"
+    if sixstar is not None and runegrade > 2:
+        selltherune = False
+        reason = "Six star hero+"
     # print("==========================")
     if selltherune:
         print("Selling rune " + '\n' + str(reason))
@@ -677,6 +690,12 @@ def evalrune():
         pyautogui.mouseDown()
         time.sleep(random.randrange(123, 357) / 1000)
         pyautogui.mouseUp()
+        file = open("runelogsold.txt", "a")
+        now = datetime.now()
+        dt_string = now.strftime("%m/%d/%Y %H:%M:%S")
+        seperator = '\t'
+        file.write(dt_string + " " + str(runeword) + " " + str(runestar) + "* " + converttostr(runesubs, seperator) + "\n")
+        file.close()
         print(pyautogui.position())
         # pyautogui.click()
         time.sleep(random.randint(1, 3))
@@ -690,6 +709,12 @@ def evalrune():
         time.sleep(random.randrange(123, 357) / 1000)
         pyautogui.mouseUp()
         print(pyautogui.position())
+        file = open("runelog.txt", "a")
+        now = datetime.now()
+        dt_string = now.strftime("%m/%d/%Y %H:%M:%S")
+        seperator = '\t'
+        file.write(dt_string + " " + str(runeword) + " " + str(runestar) + "* " + converttostr(runesubs, seperator) + "\n")
+        file.close()
         # pyautogui.click()
         runeskept += 1
 
