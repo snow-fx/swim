@@ -492,7 +492,7 @@ def checkloot():
         quiz = pyautogui.locateOnScreen('quiz.png', confidence=.98)
         if quiz is not None:
             print("QUIZ!!!")
-            pyautogui.moveTo(quix)
+            pyautogui.moveTo(quiz)
             pyautogui.moveRel(350, 0, 1)
             pyautogui.mouseDown()
             time.sleep(random.randrange(123, 357) / 1000)
