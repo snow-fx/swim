@@ -9,6 +9,7 @@ import random
 from PIL import ImageGrab, Image  # , ImageEnhance
 from os import system, name
 from datetime import datetime
+import configparser
 
 pyautogui.PAUSE = .25
 
@@ -184,6 +185,20 @@ def rundungeons():
     global runeskept
     global doublekill
     global refills
+    global alltimeruns
+    global alltimerunes
+    global alltimerunessold
+    global alltimeloot
+    cfg = configparser.ConfigParser()
+    cfg.read('stats.txt')
+    # x = cfg.get('Stats', 'TotalRuns')
+    # alltimeruns = int(x)
+    # x = cfg.get('Stats', 'TotalRunes')
+    # alltimerunes = int(x)
+    # x = cfg.get('Stats', 'TotalRunesSold')
+    # alltimerunessold = int(x)
+    # x = cfg.get('Stats', 'TotalLoot')
+    # alltimeloot = int(x)
     doublekill = 0
     x = 0
     lostbattle = None
@@ -214,11 +229,27 @@ def rundungeons():
             # print(pyautogui.position())
             time.sleep(random.randint(2, 5))
             totalruns += 1
+            cfg = configparser.ConfigParser()
+            cfg.read('stats.txt')
+            x = cfg.get('Stats', 'TotalRuns')
+            print("loaded: " + x)
+            y = int(x)
+            y += 1
+            print("changed: " + str(y))
+            cfg.set('Stats', 'TotalRuns', str(y))
+            with open('stats.txt', 'w') as conf:
+                cfg.write(conf)
+
+            print(str(x) + " alltimeruns")
+            x = cfg.get('Stats', 'TotalRuns')
+            print("Reloaded: " + str(x))
+
             print(str(totalruns) + "/" + str(howmanyruns) + " runs completed")
             print("Total loot  : " + str(lootdrops))
             print("Total Runes : " + str(runedrops))
             print("Runes Kept  : " + str(runeskept))
             print("Refills     : " + str(refills))
+
         wonbattle = pyautogui.locateOnScreen('wonbattle.png', confidence=.9)
         sellrune = pyautogui.locateOnScreen('sellrune.png', confidence=.94)
         if wonbattle is not None and sellrune is None:
@@ -323,6 +354,28 @@ def rundungeons():
             print(pyautogui.position())
             # pyautogui.click(replay)
             totalruns += 1
+            # x = cfg.get('Stats', 'TotalRuns')
+            # alltimeruns = int(x)
+            # alltimeruns += 1
+            # cfg.set('Stats', 'TotalRuns', str(alltimeruns))
+            # with open('stats.txt', 'w') as conf:
+            #     cfg.write(conf)
+            # print(str(alltimeruns) + " alltimeruns")
+            cfg = configparser.ConfigParser()
+            cfg.read('stats.txt')
+            x = cfg.get('Stats', 'TotalRuns')
+            print("loaded2: " + str(x))
+            y = int(x)
+            y += 1
+            print("changed2: " + str(y))
+            cfg.set('Stats', 'TotalRuns', str(y))
+            with open('stats.txt', 'w') as conf:
+                cfg.write(conf)
+
+            print(str(y) + " alltimeruns2")
+            x = cfg.get('Stats', 'TotalRuns')
+            print("Reloaded2: " + str(x))
+
             print(str(totalruns) + "/" + str(howmanyruns) + " runs completed")
             print("Total loot  : " + str(lootdrops))
             print("Total Runes : " + str(runedrops))
@@ -356,14 +409,14 @@ def rundungeons():
             quiz = pyautogui.locateOnScreen('quiz.png', confidence=.98)
             if quiz is not None:
                 print("QUIZ!!!")
-                pyautogui.moveTo(quix)
-                pyautogui.moveRel(350, 0, 1)
+                pyautogui.moveTo(quiz)
+                pyautogui.moveRel(465, 440, 1)
                 pyautogui.mouseDown()
                 time.sleep(random.randrange(123, 357) / 1000)
                 pyautogui.mouseUp()
                 print(pyautogui.position())
                 # pyautogui.click()
-                sys.exit()
+                # sys.exit()
             yes = pyautogui.locateOnScreen('yes.png', confidence=.98)
             pyautogui.moveTo(yes)
             pyautogui.moveRel(random.randint(0, 15), random.randint(0, 15), 1)
@@ -401,6 +454,8 @@ def rundungeons():
 
 
 def checkloot():
+    directory = r'C:\swim\images'
+    os.chdir(directory)
     global lootdrops
     global runedrops
     global runeskept
@@ -408,19 +463,78 @@ def checkloot():
     global howmanyrun
     global refills
     global doublekill
+    global alltimeruns
+    global alltimerunes
+    global alltimerunessold
+    global alltimeloot
+    cfg = configparser.ConfigParser()
+    cfg.read('stats.txt')
+    # x = cfg.get('Stats', 'TotalRuns')
+    # alltimeruns = int(x)
+    # x = cfg.get('Stats', 'TotalRunes')
+    # alltimerunes = int(x)
+    # x = cfg.get('Stats', 'TotalRunesSold')
+    # alltimerunessold = int(x)
+    # x = cfg.get('Stats', 'TotalLoot')
+    # alltimeloot = int(x)
     doublekill = 1
-    directory = r'C:\swim\images'
-    os.chdir(directory)
     # print("Checking loot")
     ok = pyautogui.locateOnScreen('ok.png', confidence=.98)
     sellrune = pyautogui.locateOnScreen('sellrune.png', confidence = .94)
     if sellrune is not None:
         ok = None
         # print("Rune Drop")
+        # x = cfg.get('Stats', 'TotalRunes')
+        # alltimerunes = int(x)
+        # alltimerunes += 1
+        # cfg.set('Stats', 'TotalRunes', str(alltimerunes))
+        # with open('stats.txt', 'w') as conf:
+        #     cfg.write(conf)
+
+        # print(str(alltimerunes) + " alltimerunes")
+        cfg = configparser.ConfigParser()
+        cfg.read('stats.txt')
+        x = cfg.get('Stats', 'TotalRunes')
+        print("loaded3: " + str(x))
+        y = int(x)
+        y += 1
+        print("changed3: " + str(y))
+        cfg.set('Stats', 'TotalRunes', str(y))
+        with open('stats.txt', 'w') as conf:
+            cfg.write(conf)
+
+        print(str(y) + " alltimerunes")
+        x = cfg.get('Stats', 'TotalRunes')
+        print("Reloaded3: " + str(x))
+
         runedrops += 1
         evalrune()
     if ok is not None:
         # print("Dropped loot")
+        cfg = configparser.ConfigParser()
+        cfg.read('stats.txt')
+        x = cfg.get('Stats', 'TotalLoot')
+        print("loaded4: " + str(x))
+        y = int(x)
+        y += 1
+        print("changed4: " + str(y))
+        cfg.set('Stats', 'TotalLoot', str(y))
+        with open('stats.txt', 'w') as conf:
+            cfg.write(conf)
+
+        print(str(y) + " alltimeloot")
+        x = cfg.get('Stats', 'TotalLoot')
+        print("Reloaded4: " + str(x))
+
+        # x = cfg.get('Stats', 'TotalLoot')
+        # alltimeloot = int(x)
+        # alltimeloot += 1
+        # cfg.set('Stats', 'TotalLoot', str(alltimeloot))
+        # with open('stats.txt', 'w') as conf:
+        #     cfg.write(conf)
+
+        # print(str(alltimeloot) + " alltimeloot")
+
         lootdrops += 1
         pyautogui.moveTo(ok)
         pyautogui.moveRel(random.randint(5, 15), random.randint(5, 15), 1)
@@ -445,6 +559,29 @@ def checkloot():
         # pyautogui.click()
 
         # pyautogui.click(otherloot)
+        cfg = configparser.ConfigParser()
+        cfg.read('stats.txt')
+        x = cfg.get('Stats', 'TotalLoot')
+        print("loaded5: " + str(x))
+        y = int(x)
+        y += 1
+        print("changed5: " + str(y))
+        cfg.set('Stats', 'TotalLoot', str(y))
+        with open('stats.txt', 'w') as conf:
+            cfg.write(conf)
+
+        print(str(y) + " alltimeloot")
+        x = cfg.get('Stats', 'TotalLoot')
+        print("Reloaded5: " + str(x))
+
+        # x = cfg.get('Stats', 'TotalLoot')
+        # alltimeloot = int(x)
+        # alltimeloot += 1
+        # cfg.set('Stats', 'TotalLoot', str(alltimeloot))
+        # with open('stats.txt', 'w') as conf:
+        #     cfg.write(conf)
+
+        # print(str(alltimeloot) + " alltimeloot")
         lootdrops += 1
         time.sleep(3)
     replay = pyautogui.locateOnScreen('replay.png', confidence=.9)
@@ -459,6 +596,30 @@ def checkloot():
         print(pyautogui.position())
         # pyautogui.click(replay)
         totalruns += 1
+        cfg = configparser.ConfigParser()
+        cfg.read('stats.txt')
+        x = cfg.get('Stats', 'TotalRuns')
+        print("loaded6: " + str(x))
+        y = int(x)
+        y += 1
+        print("changed6: " + str(y))
+        cfg.set('Stats', 'TotalRuns', str(y))
+        with open('stats.txt', 'w') as conf:
+            cfg.write(conf)
+
+        print(str(y) + " alltimeruns")
+        x = cfg.get('Stats', 'TotalRuns')
+        print("Reloaded6: " + str(x))
+
+        # x = cfg.get('Stats', 'TotalRuns')
+        # alltimeruns = int(x)
+        # alltimeruns += 1
+        # cfg.set('Stats', 'TotalRuns', str(alltimeruns))
+        # with open('stats.txt', 'w') as conf:
+        #     cfg.write(conf)
+
+        # print(str(alltimeruns) + " alltimeruns")
+
         print(str(totalruns) + "/" + str(howmanyruns) + " runs completed")
         print("Total loot  : " + str(lootdrops))
         print("Total Runes : " + str(runedrops))
@@ -561,6 +722,20 @@ def evalrune():
     global lootdrops
     global runedrops
     global runeskept
+    global alltimeruns
+    global alltimerunes
+    global alltimerunessold
+    global alltimeloot
+    cfg = configparser.ConfigParser()
+    cfg.read('stats.txt')
+    # x = cfg.get('Stats', 'TotalRuns')
+    # alltimeruns = int(x)
+    # x = cfg.get('Stats', 'TotalRunes')
+    # alltimerunes = int(x)
+    # x = cfg.get('Stats', 'TotalRunesSold')
+    # alltimerunessold = int(x)
+    # x = cfg.get('Stats', 'TotalLoot')
+    # alltimeloot = int(x)
 
     directory = r'C:\swim\images'
     os.chdir(directory)
@@ -675,6 +850,7 @@ def evalrune():
         reason = "swift with speed"
     # print("==========================")
     if selltherune:
+
         print("Selling rune " + '\n' + str(reason))
         pyautogui.moveTo(sellrunecoord)
         pyautogui.moveRel(random.randint(0, 15), random.randint(0, 15), 1)
@@ -717,7 +893,30 @@ def evalrune():
         file.close()
         # pyautogui.click()
         runeskept += 1
+        cfg = configparser.ConfigParser()
+        cfg.read('stats.txt')
+        x = cfg.get('Stats', 'TotalRunesSold')
+        print("loaded: " + str(x))
+        y = int(x)
+        y += 1
+        print("changed: " + str(y))
+        cfg.set('Stats', 'TotalRunesSold', str(y))
+        with open('stats.txt', 'w') as conf:
+            cfg.write(conf)
 
+        print(str(y) + " alltimeruns")
+
+        x = cfg.get('Stats', 'TotalRunesSold')
+        print("Reloaded: " + str(x))
+
+        # x = cfg.get('Stats', 'TotalRunesSold')
+        # alltimerunessold = int(x)
+        # alltimerunessold += 1
+        # cfg.set('Stats', 'TotalRunesSold', str(alltimerunessold))
+        # with open('stats.txt', 'w') as conf:
+        #     cfg.write(conf)
+
+        # print(str(alltimerunessold) + " alltimerunessold")
 
 def imToString():
     # Path of tesseract executable
@@ -757,6 +956,8 @@ def imToString():
 
 
 def mainloop():
+    directory = r'C:\swim\images'
+    os.chdir(directory)
     global totalruns
     global lootdrops
     global runedrops
@@ -765,6 +966,22 @@ def mainloop():
     global whichdung
     global howmanyruns
     global refills
+    global alltimeruns
+    global alltimerunes
+    global alltimerunessold
+    global alltimeloot
+    cfg = configparser.ConfigParser()
+    cfg.read('stats.txt')
+    # x = cfg.get('Stats', 'TotalRuns')
+    # alltimeruns = int(x)
+    # x = cfg.get('Stats', 'TotalRunes')
+    # alltimerunes = int(x)
+    # x = cfg.get('Stats', 'TotalRunesSold')
+    # alltimerunessold = int(x)
+    # get('Stats', 'TotalLoot')
+    # alltimeloot = int(x)
+   # print(str(alltimeruns))
+    # time.sleep(100)
     refills = 0
     totalruns = 0
     lootdrops = 0
