@@ -204,7 +204,7 @@ def rundungeons():
     lostbattle = None
     wonbattle = None
     totalruns = 0
-    howmanyruns = random.randint(30, 80)
+    howmanyruns = random.randint(50, 180)
     while totalruns <= howmanyruns:
         lostbattle = pyautogui.locateOnScreen('revive.png', confidence=.9)
         if lostbattle is not None:
