@@ -10,6 +10,7 @@ from PIL import ImageGrab, Image  # , ImageEnhance
 from os import system, name
 from datetime import datetime
 import configparser
+import re
 
 pyautogui.PAUSE = .25
 
@@ -30,7 +31,7 @@ def clear():
 
 def starting():
     print("Starting the script")
-    print("v0.0.1")
+    print("v0.0.2")
     print("   - Psych O")
     # totalruns = 0
     # rundungs = True
@@ -64,7 +65,7 @@ def lookforpopups():
             time.sleep(random.randrange(123, 357) / 1000)
             pyautogui.mouseUp()
             # pyautogui.click()
-            print(pyautogui.position())
+            # print(pyautogui.position())
             time.sleep(random.randint(1, 3))
             closewin = None
         time.sleep(1)
@@ -88,7 +89,7 @@ def cairos():
             time.sleep(random.randrange(123, 357) / 1000)
             pyautogui.mouseUp()
             # pyautogui.click()
-            print(pyautogui.position())
+            # print(pyautogui.position())
             # pyautogui.click(clickbattle)
             time.sleep(random.randint(2, 4))
             # clickbattle = None
@@ -100,7 +101,7 @@ def cairos():
             time.sleep(random.randrange(123, 357) / 1000)
             pyautogui.mouseUp()
             # pyautogui.click()
-            print(pyautogui.position())
+            # print(pyautogui.position())
             # pyautogui.click(clickcairos)
             time.sleep(random.randint(2, 4))
 #        clickbattle = None
@@ -115,7 +116,7 @@ def startbattle():
     os.chdir(directory)
     rundung = None
     clickb10 = None
-    print(str(whichdung))
+    # print(str(whichdung))
     if whichdung == 1:
         rundung = pyautogui.locateOnScreen('giants.png', confidence=.8)
         currentdung = 1
@@ -135,7 +136,7 @@ def startbattle():
         time.sleep(random.randrange(123, 357) / 1000)
         pyautogui.mouseUp()
         # pyautogui.click()
-        print(pyautogui.position())
+        # print(pyautogui.position())
         # pyautogui.click(rundung)
         time.sleep(2)
         clickb10 = pyautogui.locateOnScreen('b10.png', confidence=.8)
@@ -147,14 +148,14 @@ def startbattle():
             time.sleep(random.randrange(123, 357) / 1000)
             pyautogui.mouseUp()
             # pyautogui.click()
-            print(pyautogui.position())
+            # print(pyautogui.position())
             time.sleep(random.randint(2, 5))
             pyautogui.moveRel(random.randint(0, 2), random.randint(0, 2), 1)
             pyautogui.mouseDown()
             time.sleep(random.randrange(123, 357) / 1000)
             pyautogui.mouseUp()
             # pyautogui.click()
-            print(pyautogui.position())
+            # print(pyautogui.position())
             # clickb10 = (clickb10.left+300, clickb10.top, clickb10.width, clickb10.height)
             # clickb10.left += 300
             # print(str(clickb10))
@@ -167,7 +168,7 @@ def startbattle():
         pyautogui.mouseDown()
         time.sleep(random.randrange(123, 357) / 1000)
         pyautogui.mouseUp()
-        print(pyautogui.position())
+        # print(pyautogui.position())
         # pyautogui.click()
 
         # pyautogui.click(autoormanual)
@@ -216,7 +217,7 @@ def rundungeons():
             pyautogui.mouseDown()
             time.sleep(random.randrange(123, 357) / 1000)
             pyautogui.mouseUp()
-            print(pyautogui.position())
+            # (pyautogui.position())
             # pyautogui.click()
             # print(pyautogui.position())
             time.sleep(random.randint(2, 5))
@@ -224,7 +225,7 @@ def rundungeons():
             pyautogui.mouseDown()
             time.sleep(random.randrange(123, 357) / 1000)
             pyautogui.mouseUp()
-            print(pyautogui.position())
+            # print(pyautogui.position())
             # pyautogui.click()
             # print(pyautogui.position())
             time.sleep(random.randint(2, 5))
@@ -232,17 +233,17 @@ def rundungeons():
             cfg = configparser.ConfigParser()
             cfg.read('stats.txt')
             x = cfg.get('Stats', 'TotalRuns')
-            print("loaded: " + x)
+            # print("loaded: " + x)
             y = int(x)
             y += 1
-            print("changed: " + str(y))
+            # print("changed: " + str(y))
             cfg.set('Stats', 'TotalRuns', str(y))
             with open('stats.txt', 'w') as conf:
                 cfg.write(conf)
 
             print(str(x) + " alltimeruns")
             x = cfg.get('Stats', 'TotalRuns')
-            print("Reloaded: " + str(x))
+            # print("Reloaded: " + str(x))
 
             print(str(totalruns) + "/" + str(howmanyruns) + " runs completed")
             print("Total loot  : " + str(lootdrops))
@@ -260,7 +261,7 @@ def rundungeons():
             # pyautogui.moveRel(random.randint(-100, 150), random.randint(-39, 150), 1)
             # pyautogui.click()
             if doublekill > 0 or doublekill is None:
-                x = random.randint(1, 50)
+                x = random.randint(1, 30)
             else:
                 doublekill = 0
             if x < 20:
@@ -289,7 +290,7 @@ def rundungeons():
             time.sleep(random.randrange(123, 357) / 1000)
             pyautogui.mouseUp()
             # pyautogui.click()
-            print(pyautogui.position())
+            # print(pyautogui.position())
             # pyautogui.click(wonbattle)
             x = random.randint(1, 10)
             pyautogui.moveRel(random.randint(-7, 7), random.randint(-7, 7), .2)
@@ -298,7 +299,7 @@ def rundungeons():
             time.sleep(random.randrange(123, 357) / 1000)
             pyautogui.mouseUp()
             # pyautogui.click()
-            print(pyautogui.position())
+            # print(pyautogui.position())
             # pyautogui.click(wonbattle)
             checkloot()
             wonbattle = None
@@ -314,7 +315,7 @@ def rundungeons():
             pyautogui.mouseDown()
             time.sleep(random.randrange(123, 357) / 1000)
             pyautogui.mouseUp()
-            print(pyautogui.position())
+            # print(pyautogui.position())
             # pyautogui.click()
 
             # pyautogui.click(prepare)
@@ -325,7 +326,7 @@ def rundungeons():
             pyautogui.mouseDown()
             time.sleep(random.randrange(123, 357) / 1000)
             pyautogui.mouseUp()
-            print(pyautogui.position())
+            # print(pyautogui.position())
             # pyautogui.click()
 
             # pyautogui.click(indungbattle)
@@ -337,7 +338,7 @@ def rundungeons():
             pyautogui.mouseDown()
             time.sleep(random.randrange(123, 357) / 1000)
             pyautogui.mouseUp()
-            print(pyautogui.position())
+            # print(pyautogui.position())
             # pyautogui.click()
 
             # (otherloot)
@@ -351,7 +352,7 @@ def rundungeons():
             time.sleep(random.randrange(123, 357) / 1000)
             pyautogui.mouseUp()
             # pyautogui.click(replay)
-            print(pyautogui.position())
+            # print(pyautogui.position())
             # pyautogui.click(replay)
             totalruns += 1
             # x = cfg.get('Stats', 'TotalRuns')
@@ -364,17 +365,17 @@ def rundungeons():
             cfg = configparser.ConfigParser()
             cfg.read('stats.txt')
             x = cfg.get('Stats', 'TotalRuns')
-            print("loaded2: " + str(x))
+            # print("loaded2: " + str(x))
             y = int(x)
             y += 1
-            print("changed2: " + str(y))
+            # print("changed2: " + str(y))
             cfg.set('Stats', 'TotalRuns', str(y))
             with open('stats.txt', 'w') as conf:
                 cfg.write(conf)
 
             print(str(y) + " alltimeruns2")
             x = cfg.get('Stats', 'TotalRuns')
-            print("Reloaded2: " + str(x))
+            # print("Reloaded2: " + str(x))
 
             print(str(totalruns) + "/" + str(howmanyruns) + " runs completed")
             print("Total loot  : " + str(lootdrops))
@@ -390,7 +391,7 @@ def rundungeons():
             pyautogui.mouseDown()
             time.sleep(random.randrange(123, 357) / 1000)
             pyautogui.mouseUp()
-            print(pyautogui.position())
+            # print(pyautogui.position())
             # pyautogui.click()
 
             # pyautogui.click(shoprefill)
@@ -401,7 +402,7 @@ def rundungeons():
             pyautogui.mouseDown()
             time.sleep(random.randrange(123, 357) / 1000)
             pyautogui.mouseUp()
-            print(pyautogui.position())
+            # print(pyautogui.position())
             # pyautogui.click()
 
             # pyautogui.click(rechargeenergy)
@@ -414,7 +415,7 @@ def rundungeons():
                 pyautogui.mouseDown()
                 time.sleep(random.randrange(123, 357) / 1000)
                 pyautogui.mouseUp()
-                print(pyautogui.position())
+                # print(pyautogui.position())
                 # pyautogui.click()
                 # sys.exit()
             yes = pyautogui.locateOnScreen('yes.png', confidence=.98)
@@ -423,7 +424,7 @@ def rundungeons():
             pyautogui.mouseDown()
             time.sleep(random.randrange(123, 357) / 1000)
             pyautogui.mouseUp()
-            print(pyautogui.position())
+            # print(pyautogui.position())
             # pyautogui.click()
 
             # pyautogui.click(yes)
@@ -434,7 +435,7 @@ def rundungeons():
             pyautogui.mouseDown()
             time.sleep(random.randrange(123, 357) / 1000)
             pyautogui.mouseUp()
-            print(pyautogui.position())
+            # print(pyautogui.position())
             # pyautogui.click()
 
             # pyautogui.click(ok2)
@@ -445,7 +446,7 @@ def rundungeons():
             pyautogui.mouseDown()
             time.sleep(random.randrange(123, 357) / 1000)
             pyautogui.mouseUp()
-            print(pyautogui.position())
+            # print(pyautogui.position())
             # pyautogui.click()
 
             # pyautogui.click(closewindow)
@@ -495,17 +496,17 @@ def checkloot():
         cfg = configparser.ConfigParser()
         cfg.read('stats.txt')
         x = cfg.get('Stats', 'TotalRunes')
-        print("loaded3: " + str(x))
+        # print("loaded3: " + str(x))
         y = int(x)
         y += 1
-        print("changed3: " + str(y))
+        # print("changed3: " + str(y))
         cfg.set('Stats', 'TotalRunes', str(y))
         with open('stats.txt', 'w') as conf:
             cfg.write(conf)
 
         print(str(y) + " alltimerunes")
         x = cfg.get('Stats', 'TotalRunes')
-        print("Reloaded3: " + str(x))
+        # print("Reloaded3: " + str(x))
 
         runedrops += 1
         evalrune()
@@ -514,17 +515,17 @@ def checkloot():
         cfg = configparser.ConfigParser()
         cfg.read('stats.txt')
         x = cfg.get('Stats', 'TotalLoot')
-        print("loaded4: " + str(x))
+        # print("loaded4: " + str(x))
         y = int(x)
         y += 1
-        print("changed4: " + str(y))
+        # print("changed4: " + str(y))
         cfg.set('Stats', 'TotalLoot', str(y))
         with open('stats.txt', 'w') as conf:
             cfg.write(conf)
 
         print(str(y) + " alltimeloot")
         x = cfg.get('Stats', 'TotalLoot')
-        print("Reloaded4: " + str(x))
+        # print("Reloaded4: " + str(x))
 
         # x = cfg.get('Stats', 'TotalLoot')
         # alltimeloot = int(x)
@@ -541,7 +542,7 @@ def checkloot():
         pyautogui.mouseDown()
         time.sleep(random.randrange(123, 357) / 1000)
         pyautogui.mouseUp()
-        print(pyautogui.position())
+        # print(pyautogui.position())
         # pyautogui.click()
 
         # pyautogui.click(ok)
@@ -555,24 +556,24 @@ def checkloot():
         pyautogui.mouseDown()
         time.sleep(random.randrange(123, 357) / 1000)
         pyautogui.mouseUp()
-        print(pyautogui.position())
+        # print(pyautogui.position())
         # pyautogui.click()
 
         # pyautogui.click(otherloot)
         cfg = configparser.ConfigParser()
         cfg.read('stats.txt')
         x = cfg.get('Stats', 'TotalLoot')
-        print("loaded5: " + str(x))
+        # ("loaded5: " + str(x))
         y = int(x)
         y += 1
-        print("changed5: " + str(y))
+        # print("changed5: " + str(y))
         cfg.set('Stats', 'TotalLoot', str(y))
         with open('stats.txt', 'w') as conf:
             cfg.write(conf)
 
         print(str(y) + " alltimeloot")
         x = cfg.get('Stats', 'TotalLoot')
-        print("Reloaded5: " + str(x))
+        # print("Reloaded5: " + str(x))
 
         # x = cfg.get('Stats', 'TotalLoot')
         # alltimeloot = int(x)
@@ -593,23 +594,23 @@ def checkloot():
         time.sleep(random.randrange(123, 357) / 1000)
         pyautogui.mouseUp()
         # pyautogui.click(replay)
-        print(pyautogui.position())
+        # print(pyautogui.position())
         # pyautogui.click(replay)
         totalruns += 1
         cfg = configparser.ConfigParser()
         cfg.read('stats.txt')
         x = cfg.get('Stats', 'TotalRuns')
-        print("loaded6: " + str(x))
+        # print("loaded6: " + str(x))
         y = int(x)
         y += 1
-        print("changed6: " + str(y))
+        # print("changed6: " + str(y))
         cfg.set('Stats', 'TotalRuns', str(y))
         with open('stats.txt', 'w') as conf:
             cfg.write(conf)
 
         print(str(y) + " alltimeruns")
         x = cfg.get('Stats', 'TotalRuns')
-        print("Reloaded6: " + str(x))
+        # print("Reloaded6: " + str(x))
 
         # x = cfg.get('Stats', 'TotalRuns')
         # alltimeruns = int(x)
@@ -634,7 +635,7 @@ def checkloot():
         pyautogui.mouseDown()
         time.sleep(random.randrange(123, 357) / 1000)
         pyautogui.mouseUp()
-        print(pyautogui.position())
+        # (pyautogui.position())
         # pyautogui.click()
 
         # pyautogui.click(shoprefill)
@@ -645,7 +646,7 @@ def checkloot():
         pyautogui.mouseDown()
         time.sleep(random.randrange(123, 357) / 1000)
         pyautogui.mouseUp()
-        print(pyautogui.position())
+        # print(pyautogui.position())
         # pyautogui.click()
 
         # pyautogui.click(rechargeenergy)
@@ -658,7 +659,7 @@ def checkloot():
             pyautogui.mouseDown()
             time.sleep(random.randrange(123, 357) / 1000)
             pyautogui.mouseUp()
-            print(pyautogui.position())
+            # print(pyautogui.position())
             # pyautogui.click()
         yes = pyautogui.locateOnScreen('yes.png', confidence=.98)
         pyautogui.moveTo(yes)
@@ -666,7 +667,7 @@ def checkloot():
         pyautogui.mouseDown()
         time.sleep(random.randrange(123, 357) / 1000)
         pyautogui.mouseUp()
-        print(pyautogui.position())
+        # print(pyautogui.position())
         # pyautogui.click()
 
         # pyautogui.click(yes)
@@ -677,7 +678,7 @@ def checkloot():
         pyautogui.mouseDown()
         time.sleep(random.randrange(123, 357) / 1000)
         pyautogui.mouseUp()
-        print(pyautogui.position())
+        # print(pyautogui.position())
         # pyautogui.click()
 
         # pyautogui.click(ok2)
@@ -688,7 +689,7 @@ def checkloot():
         pyautogui.mouseDown()
         time.sleep(random.randrange(123, 357) / 1000)
         pyautogui.mouseUp()
-        print(pyautogui.position())
+        # print(pyautogui.position())
         # pyautogui.click()
 
         # pyautogui.click(closewindow)
@@ -738,7 +739,7 @@ def evalrune():
 
     directory = r'C:\swim\images'
     os.chdir(directory)
-    time.sleep(5)
+    time.sleep(2)
     pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract'
     sellrunecoord = pyautogui.locateOnScreen('sellrune.png', confidence = .96)
     coord = list(sellrunecoord)
@@ -768,6 +769,19 @@ def evalrune():
     legend = pyautogui.locateOnScreen('legend.png', confidence=.99)
     hero = pyautogui.locateOnScreen('hero.png', confidence=.99)
     magic = pyautogui.locateOnScreen('magic.png', confidence=.99)
+    defp = 0
+    deff = 0
+    atkp = 0
+    atk = 0
+    hpp = 0
+    hp = 0
+    cr = 0
+    cd = 0
+    res = 0
+    acc = 0
+    spd = 0
+    selltherune = True
+    runeinnate = None
     if fivestar is not None:
         # print("Five Star Rune")
         runestar = 5
@@ -787,7 +801,9 @@ def evalrune():
         runegrade = 2
         runeword = "Magic  "
     # runesubs = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    # print(runestr)
     runesubs = runestr.split()
+    runesubs.append('End')
     if 'Dmg' in runesubs:
         index = runesubs.index('Dmg')
         index = index - 1
@@ -799,8 +815,8 @@ def evalrune():
         runesubs[index] = 'CR'
         runesubs.remove('Rate')
     # print(index)
-    print("Rune Drop:")
-    print(runesubs)
+    # print("Rune Drop:")
+    # print(runesubs)
     if '|' in runesubs:
         index = runesubs.index('|')
         runesubs[index] = '1'
@@ -808,13 +824,92 @@ def evalrune():
         # print("Innate stat")
         del runesubs[0]
         runeinnate = [runesubs[5], runesubs[6]]
-        del runesubs[6]
-        del runesubs[5]
+        # del runesubs[6]
+        # del runesubs[5]
         # print(runesubs)
     runetype = runesubs[0]
-    runeslot = runesubs[2]
-
-#    print("==========================")
+    runeslot = int(re.search(r'\d+', runesubs[2]).group())
+    if 'Rune' in runesubs:
+        index = runesubs.index('Rune')
+        runesubs.remove('Rune')
+        # print(runesubs)
+    del runesubs[0]
+    # print(runesubs)
+    del runesubs[0]
+    # print(runesubs)
+    mainstat = runesubs[0]
+    mainsub = runesubs[1]
+    if '%' in mainsub:
+        mainstat.append('%')
+    if runeinnate is not None:
+        innate = runesubs[2]
+        innateis = int(re.search(r'\d+', runesubs[3]).group())
+        del runesubs[3]
+        del runesubs[2]
+    # print(runesubs)
+    del runesubs[1]
+    del runesubs[0]
+    # print(runesubs)
+    while runesubs[0] != 'End':
+        if 'DEF' in runesubs[0]:
+            if '%' in runesubs[1]:
+                defp = int(re.search(r'\d+', runesubs[1]).group())
+            else:
+                deff = int(runesubs[1])
+            del runesubs[1]
+            del runesubs[0]
+        if 'ATK' in runesubs[0]:
+            if '%' in runesubs[1]:
+                atkp = int(re.search(r'\d+', runesubs[1]).group())
+            else:
+                atk = int(runesubs[1])
+            del runesubs[1]
+            del runesubs[0]
+        if 'HP' in runesubs[0]:
+            if '%' in runesubs[1]:
+                hpp = int(re.search(r'\d+', runesubs[1]).group())
+            else:
+                hp = int(runesubs[1])
+            del runesubs[1]
+            del runesubs[0]
+        if 'CD' in runesubs[0]:
+            cd = int(re.search(r'\d+', runesubs[1]).group())
+            del runesubs[1]
+            del runesubs[0]
+        if 'CR' in runesubs[0]:
+            cr = int(re.search(r'\d+', runesubs[1]).group())
+            del runesubs[1]
+            del runesubs[0]
+        if 'Resistance' in runesubs[0]:
+            res = int(re.search(r'\d+', runesubs[1]).group())
+            del runesubs[1]
+            del runesubs[0]
+        if 'Accuracy' in runesubs[0]:
+            acc = int(re.search(r'\d+', runesubs[1]).group())
+            del runesubs[1]
+            del runesubs[0]
+        if 'SPD' in runesubs[0]:
+            spd = runesubs[1]
+            del runesubs[1]
+            del runesubs[0]
+    # print("Rune type : " + runetype)
+    # print("Rune slot : " + str(runeslot))
+    # print("Main Stat : " + mainstat)
+    # print("Innate    : " + innate)
+    # print("            " + str(innateis))
+    # print("spd       : " + str(spd))
+    # print("atkp      : " + str(atkp))
+    # print("atk       : " + str(atk))
+    # print("defp      : " + str(defp))
+    # print("deff      : " + str(deff))
+    # print("hpp       : " + str(hpp))
+    # print("hp        : " + str(hp))
+    # print("cr        : " + str(cr))
+    # print("cd        : " + str(cd))
+    # print("res       : " + str(res))
+    # print("acc       : " + str(acc))
+    # time.sleep(50)
+    #    print("==========================")
 #    print("= " + runetype + " " + runeslot + " " + runeword + " " + str(runestar) +"*")
 #    print("= " + runesubs[3] + " " + runesubs[4] + " - Main")
 #    if runeinnate is not None:
@@ -828,7 +923,7 @@ def evalrune():
 #    if len(runesubs) > 11:
 #        print("= " + runesubs[11] + " " + runesubs[12])
     #keep or sell
-    print(runeslot)
+    # print(runeslot)
     if fivestar is not None:
         selltherune = True
         reason = "Five star rune"
@@ -848,6 +943,188 @@ def evalrune():
         selltherune = False
         reason = "swift with speed"
     # print("==========================")
+    # selltherune = True
+    print(selltherune)
+    with open("c:\swim\images\pickit.txt", "r") as fp:
+        line = fp.readline().strip()
+        while line:
+            ptype = None
+            pslot = 0
+            pdefp = 0
+            pdeff = 0
+            patkp = 0
+            patk = 0
+            phpp = 0
+            php = 0
+            pcr = 0
+            pcd = 0
+            pres = 0
+            pacc = 0
+            pspd = 0
+            pgrade = 0
+            pstar = 0
+            pmain = None
+            rightslot = False
+            righttype = False
+            ppslot = None
+            sellorkeep = False
+            # print(line)
+            pickit = line.split()
+            # print(pickit)
+            pickit.append('END')
+            while pickit[0] != 'END':
+                pickit[0] = pickit[0].upper()
+                pickit = [x.upper() for x in pickit]
+                pickit = [x.strip() for x in pickit]
+                # breaker = 0
+                if '#' in pickit[0]:
+                    # print('comment')
+                    pickit[0] = 'END'
+                if 'SELLRUNES' in pickit[0]:
+                    sellorkeep = True
+                if 'MAIN' in pickit:
+                    index = pickit.index('MAIN')
+                    pmain = pickit[index + 1]
+                    del pickit[index + 1]
+                    del pickit[index]
+                    print("pmain " + str(pmain))
+                if 'STAR' in pickit:
+                    index = pickit.index('STAR')
+                    pstar = pickit[index + 1]
+                    del pickit[index + 1]
+                    del pickit[index]
+                if 'GRADE' in pickit:
+                    index = pickit.index('GRADE')
+                    pgrade = pickit[index + 1]
+                    del pickit[index + 1]
+                    del pickit[index]
+                if 'TYPE' in pickit:
+                    index = pickit.index('TYPE')
+                    ptype = pickit[index + 1]
+                    print(str(ptype) + " ptype")
+                    del pickit[index + 1]
+                    del pickit[index]
+                    # print("ptype" + str(ptype))
+                if 'SLOT' in pickit:
+                    index = pickit.index('SLOT')
+                    if pickit[index + 1] == 'ANY':
+                        ppslot = 'ANY'
+                    else:
+                        pslot = int(pickit[index + 1])
+                    print("pslot " + str(pslot))
+                    del pickit[index + 1]
+                    del pickit[index]
+                    # print("pslot" + str(pslot))
+                if 'DEF%' in pickit:
+                    index = pickit.index('DEF%')
+                    pdefp = int(re.search(r'\d+', pickit[index + 1]).group())
+                    del pickit[index + 1]
+                    del pickit[index]
+                if 'DEF' in pickit[0]:
+                    index = pickit.index('DEF')
+                    pdeff = int(pickit[index + 1])
+                    del pickit[index + 1]
+                    del pickit[index]
+                    # print("pdefp" + str(pdefp))
+                    # print("pdeff" + str(pdeff))
+                if 'ATK%' in pickit:
+                    index = pickit.index('ATK%')
+                    patkp = int(re.search(r'\d+', pickit[index + 1]).group())
+                    del pickit[index + 1]
+                    del pickit[index]
+                if 'ATK' in pickit[0]:
+                    index = pickit.index('STAR')
+                    patk = int(pickit[index + 1])
+                    del pickit[index + 1]
+                    del pickit[index]
+                    # print("patkp" + str(patkp))
+                    # print("patk" + str(patk))
+                if 'HP%' in pickit:
+                    index = pickit.index('HP%')
+                    phpp = int(re.search(r'\d+', pickit[index + 1]).group())
+                    del pickit[index + 1]
+                    del pickit[index]
+                if 'HP' in pickit:
+                    index = pickit.index('HP')
+                    php = int(pickit[index + 1])
+                    del pickit[index + 1]
+                    del pickit[index]
+                    # print("phpp" + str(phpp))
+                    # print("php" + str(php))
+                if 'CD' in pickit:
+                    pcd = int(re.search(r'\d+', pickit[index + 1]).group())
+                    del pickit[index + 1]
+                    del pickit[index]
+                    # print("pcp" + str(pcp))
+                if 'CR' in pickit:
+                    pcr = int(re.search(r'\d+', pickit[index + 1]).group())
+                    del pickit[index + 1]
+                    del pickit[index]
+                    # print("pcr" + str(pcr))
+                if 'Resistance' in pickit:
+                    pres = int(re.search(r'\d+', pickit[index + 1]).group())
+                    del pickit[index + 1]
+                    del pickit[index]
+                    # print("pres" + str(pres))
+                if 'Accuracy' in pickit:
+                    pacc = int(re.search(r'\d+', pickit[index + 1]).group())
+                    del pickit[index + 1]
+                    del pickit[index]
+                    # print("pacc" + str(pacc))
+                if 'SPD' in pickit:
+                    pspd = pickit[index + 1]
+                    del pickit[index + 1]
+                    del pickit[index]
+                    # print("pspd" + str(pspd))
+            # time.sleep(99)
+            if str(runetype).upper() == str(ptype):
+                righttype = True
+                print("right type ptype")
+            if str(ptype) == str('ANY'):
+                print("ptype ANY")
+                righttype = True
+            if int(runeslot) == int(pslot):
+                print("right slot pslot")
+                rightslot = True
+            if ppslot == str('ANY'):
+                print("pslot ANY")
+                rightslot = True
+            if str(mainstat) == str(pmain):
+                print("mainstat pmain")
+                rightmain = True
+            if pmain == 'ANY':
+                print("pmain ANY")
+                rightmain = True
+            if righttype and rightslot and rightmain\
+                and defp >= pdefp and deff >= pdeff and atkp >= patkp and atk >= patk \
+                and hpp >= phpp and hp >= php and cr >= pcr and cd >= pcd and res >= pres \
+                and acc >= pacc and spd >= pspd and runegrade >= pgrade and runestar >= pstar:
+                selltherune = sellorkeep
+                reason = "Pickit"
+                # breaker = 1
+                print("keeping")
+                # time.sleep(1)
+            # print(selltherune)
+            # print(str(runeslot) + " : " + str(pslot))
+            # print(str(runetype) + " : " + str(ptype))
+            # print(str(defp) + " : " + str(pdefp))
+            # print(str(deff) + " : " + str(pdeff))
+            # print(str(atkp) + " : " + str(patkp))
+            # print(str(atk) + " : " + str(patk))
+            # print(str(hpp) + " : " + str(phpp))
+            # print(str(hp) + " : " + str(php))
+            # print(str(cr) + " : " + str(pcr))
+            # print(str(cd) + " : " + str(pcd))
+            # print(str(res) + " : " + str(pres))
+            # print(str(acc) + " : " + str(pacc))
+            # print(str(spd) + " : " + str(pspd))
+            # print(selltherune)
+            # time.sleep(5)
+            # if breaker == 1:
+                # break
+            line = fp.readline().strip()
+        print(selltherune)
+        time.sleep(40)
     if selltherune:
 
         print("Selling rune " + '\n' + str(reason))
@@ -856,7 +1133,7 @@ def evalrune():
         pyautogui.mouseDown()
         time.sleep(random.randrange(123, 357) / 1000)
         pyautogui.mouseUp()
-        print(pyautogui.position())
+        # print(pyautogui.position())
         # pyautogui.click()
 
         # pyautogui.click(sellrunecoord)
@@ -869,9 +1146,10 @@ def evalrune():
         now = datetime.now()
         dt_string = now.strftime("%m/%d/%Y %H:%M:%S")
         seperator = '\t'
+        runesubs = runestr.split()
         file.write(dt_string + " " + str(runeword) + " " + str(runestar) + "* " + converttostr(runesubs, seperator) + "\n")
         file.close()
-        print(pyautogui.position())
+        # print(pyautogui.position())
         # pyautogui.click()
         time.sleep(random.randint(1, 3))
     else:
@@ -883,11 +1161,12 @@ def evalrune():
         pyautogui.mouseDown()
         time.sleep(random.randrange(123, 357) / 1000)
         pyautogui.mouseUp()
-        print(pyautogui.position())
+        # print(pyautogui.position())
         file = open("runelog.txt", "a")
         now = datetime.now()
         dt_string = now.strftime("%m/%d/%Y %H:%M:%S")
         seperator = '\t'
+        runesubs = runestr.split()
         file.write(dt_string + " " + str(runeword) + " " + str(runestar) + "* " + converttostr(runesubs, seperator) + "\n")
         file.close()
         # pyautogui.click()
@@ -895,10 +1174,10 @@ def evalrune():
         cfg = configparser.ConfigParser()
         cfg.read('stats.txt')
         x = cfg.get('Stats', 'TotalRunesSold')
-        print("loaded: " + str(x))
+        # print("loaded: " + str(x))
         y = int(x)
         y += 1
-        print("changed: " + str(y))
+        # print("changed: " + str(y))
         cfg.set('Stats', 'TotalRunesSold', str(y))
         with open('stats.txt', 'w') as conf:
             cfg.write(conf)
@@ -906,7 +1185,7 @@ def evalrune():
         print(str(y) + " alltimeruns")
 
         x = cfg.get('Stats', 'TotalRunesSold')
-        print("Reloaded: " + str(x))
+        # print("Reloaded: " + str(x))
 
         # x = cfg.get('Stats', 'TotalRunesSold')
         # alltimerunessold = int(x)
@@ -988,6 +1267,7 @@ def mainloop():
     runeskept = 0
     currentdung = 0
     whichdung = random.randint(1, 3)
+    evalrune()
     starting()
     lookforpopups()
 #   islandstuff()
