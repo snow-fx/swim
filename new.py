@@ -1267,7 +1267,7 @@ def mainloop():
     runeskept = 0
     currentdung = 0
     whichdung = random.randint(1, 3)
-    evalrune()
+    # evalrune()
     starting()
     lookforpopups()
 #   islandstuff()
