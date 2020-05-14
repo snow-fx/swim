@@ -657,7 +657,7 @@ def checkloot():
         if quiz is not None:
             print("QUIZ!!!")
             im1 = pyautogui.screenshot()
-            im1.save(r'c:\swim\images\quizes\quiz' + random.randint(10, 10000) + '.png', )
+            im1.save(r'c:\swim\images\quizes\quiz' + str(random.randint(10, 10000) + '.png', ))
             pyautogui.moveTo(quiz)
             pyautogui.moveRel(465, 440, 1)
             pyautogui.mouseDown()
@@ -1061,11 +1061,11 @@ def evalrune():
                     pickit[0] = 'END'
                     cnt += 1
                 if 'SELLRUNES' in pickit[0]:
-                    sellorkeep = True
+                    sellorkeep = True # sell if true
                     pickit[0] = 'END'
                     cnt += 1
                 if 'KEEPRUNES' in pickit[0]:
-                    sellorkeep = False
+                    sellorkeep = False # keep if false
                     pickit[0] = 'END'
                     cnt += 1
                 if 'MAIN' in pickit:
@@ -1138,26 +1138,31 @@ def evalrune():
                     # print("phpp" + str(phpp))
                     # print("php" + str(php))
                 if 'CD' in pickit:
+                    index = pickit.index('CD')
                     pcd = int(re.search(r'\d+', pickit[index + 1]).group())
                     del pickit[index + 1]
                     del pickit[index]
                     # print("pcp" + str(pcp))
                 if 'CR' in pickit:
+                    index = pickit.index('CR')
                     pcr = int(re.search(r'\d+', pickit[index + 1]).group())
                     del pickit[index + 1]
                     del pickit[index]
                     # print("pcr" + str(pcr))
                 if 'RES' in pickit:
+                    index = pickit.index('RES')
                     pres = int(re.search(r'\d+', pickit[index + 1]).group())
                     del pickit[index + 1]
                     del pickit[index]
                     # print("pres" + str(pres))
                 if 'ACC' in pickit:
+                    index = pickit.index('ACC')
                     pacc = int(re.search(r'\d+', pickit[index + 1]).group())
                     del pickit[index + 1]
                     del pickit[index]
                     # print("pacc" + str(pacc))
                 if 'SPD' in pickit:
+                    index = pickit.index('SPD')
                     pspd = pickit[index + 1]
                     del pickit[index + 1]
                     del pickit[index]
