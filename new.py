@@ -786,6 +786,8 @@ def evalrune():
     spd = 0
     selltherune = True
     runeinnate = None
+    innate = ''
+    innateis = 0
     if fivestar is not None:
         # print("Five Star Rune")
         runestar = 5
@@ -837,13 +839,13 @@ def evalrune():
             newstr = ''.join([tempstr[i] for i in range(len(tempstr)) if i != 0])
             runesubs[leng] = newstr
         # print(str(runesubs[leng]) + " " + str(leng))
-    res = []
+    ress = []
     for ele in runesubs:
         sub = ele.split('+')
-        res.extend(sub)
+        ress.extend(sub)
     # print(runesubs)
     # print(res)
-    runesubs = res
+    runesubs = ress
     # time.sleep(50)
     if any(q in runesubs for q in ['Strong', 'Tenacious', 'Ferocious', 'Powerful', 'Sturdy', 'Durable', 'Quick', 'Mortal', 'Cruel', 'Resistant', 'Intricate']):
         # print("Innate stat")
@@ -869,7 +871,7 @@ def evalrune():
     #print(runeslot)
     if '%' in mainsub:
         mainstat = mainstat + "%"
-        print(mainstat)
+        # print(mainstat)
     if runeinnate is not None:
         innate = runesubs[2]
         innateis = int(re.search(r'\d+', runesubs[3]).group())
@@ -914,6 +916,7 @@ def evalrune():
             del runesubs[0]
         if 'Resistance' in runesubs[0]:
             res = int(re.search(r'\d+', runesubs[1]).group())
+            print("wtf")
             del runesubs[1]
             del runesubs[0]
         if 'Accuracy' in runesubs[0]:
@@ -924,22 +927,24 @@ def evalrune():
             spd = runesubs[1]
             del runesubs[1]
             del runesubs[0]
-    # print("Rune type : " + runetype)
-    # print("Rune slot : " + str(runeslot))
-    # print("Main Stat : " + mainstat)
-    # print("Innate    : " + innate)
-    # print("            " + str(innateis))
-    # print("spd       : " + str(spd))
-    # print("atkp      : " + str(atkp))
-    # print("atk       : " + str(atk))
-    # print("defp      : " + str(defp))
-    # print("deff      : " + str(deff))
-    # print("hpp       : " + str(hpp))
-    # print("hp        : " + str(hp))
-    # print("cr        : " + str(cr))
-    # print("cd        : " + str(cd))
-    # print("res       : " + str(res))
-    # print("acc       : " + str(acc))
+    showsubs = True
+    if showsubs == True:
+        print("Rune type : " + runetype)
+        print("Rune slot : " + str(runeslot))
+        print("Main Stat : " + mainstat)
+        print("Innate    : " + innate)
+        print("            " + str(innateis))
+        print("spd       : " + str(spd))
+        print("atkp      : " + str(atkp))
+        print("atk       : " + str(atk))
+        print("defp      : " + str(defp))
+        print("deff      : " + str(deff))
+        print("hpp       : " + str(hpp))
+        print("hp        : " + str(hp))
+        print("cr        : " + str(cr))
+        print("cd        : " + str(cd))
+        print("res       : " + str(res))
+        print("acc       : " + str(acc))
     # time.sleep(50)
     #    print("==========================")
 #    print("= " + runetype + " " + runeslot + " " + runeword + " " + str(runestar) +"*")
@@ -1176,8 +1181,7 @@ def evalrune():
             if pmain == 'ANY':
                 # print("pmain ANY")
                 rightmain = True
-            if righttype and rightslot and rightmain\
-                and defp >= pdefp and deff >= pdeff and atkp >= patkp and atk >= patk \
+            if righttype and rightslot and rightmain and defp >= pdefp and deff >= pdeff and atkp >= patkp and atk >= patk \
                 and hpp >= phpp and hp >= php and cr >= pcr and cd >= pcd and res >= pres \
                 and acc >= pacc and spd >= pspd and runegrade >= pgrade and runestar >= pstar:
                 selltherune = sellorkeep
