@@ -410,6 +410,8 @@ def rundungeons():
             quiz = pyautogui.locateOnScreen('quiz.png', confidence=.98)
             if quiz is not None:
                 print("QUIZ!!!")
+                im1 = pyautogui.screenshot()
+                im1.save(r'c:\swim\images\quizes\quiz' + random.randint(10,10000) +'.png', )
                 pyautogui.moveTo(quiz)
                 pyautogui.moveRel(465, 440, 1)
                 pyautogui.mouseDown()
@@ -654,6 +656,8 @@ def checkloot():
         quiz = pyautogui.locateOnScreen('quiz.png', confidence=.98)
         if quiz is not None:
             print("QUIZ!!!")
+            im1 = pyautogui.screenshot()
+            im1.save(r'c:\swim\images\quizes\quiz' + random.randint(10, 10000) + '.png', )
             pyautogui.moveTo(quiz)
             pyautogui.moveRel(465, 440, 1)
             pyautogui.mouseDown()
@@ -820,6 +824,27 @@ def evalrune():
     if '|' in runesubs:
         index = runesubs.index('|')
         runesubs[index] = '1'
+    leng = len(runesubs)
+    # print(leng)
+    # print(runesubs)
+    #time.sleep(50)
+    while leng >= 1:
+        leng -= 1
+        tempstr = runesubs[leng]
+        # print(tempstr)
+        # time.sleep(.5)
+        if '+' in runesubs[leng][:1]:
+            newstr = ''.join([tempstr[i] for i in range(len(tempstr)) if i != 0])
+            runesubs[leng] = newstr
+        # print(str(runesubs[leng]) + " " + str(leng))
+    res = []
+    for ele in runesubs:
+        sub = ele.split('+')
+        res.extend(sub)
+    # print(runesubs)
+    # print(res)
+    runesubs = res
+    # time.sleep(50)
     if any(q in runesubs for q in ['Strong', 'Tenacious', 'Ferocious', 'Powerful', 'Sturdy', 'Durable', 'Quick', 'Mortal', 'Cruel', 'Resistant', 'Intricate']):
         # print("Innate stat")
         del runesubs[0]
@@ -838,9 +863,13 @@ def evalrune():
     del runesubs[0]
     # print(runesubs)
     mainstat = runesubs[0]
+    #print(mainstat)
     mainsub = runesubs[1]
+    #print(mainsub)
+    #print(runeslot)
     if '%' in mainsub:
-        mainstat.append('%')
+        mainstat = mainstat + "%"
+        print(mainstat)
     if runeinnate is not None:
         innate = runesubs[2]
         innateis = int(re.search(r'\d+', runesubs[3]).group())
@@ -862,6 +891,9 @@ def evalrune():
             if '%' in runesubs[1]:
                 atkp = int(re.search(r'\d+', runesubs[1]).group())
             else:
+                # print(runesubs[0])
+                # print(runesubs[1])
+                # time.sleep(50)
                 atk = int(runesubs[1])
             del runesubs[1]
             del runesubs[0]
@@ -924,6 +956,34 @@ def evalrune():
 #        print("= " + runesubs[11] + " " + runesubs[12])
     #keep or sell
     # print(runeslot)
+    runesubs = runestr.split()
+    runesubs.append('End')
+    if 'Dmg' in runesubs:
+        index = runesubs.index('Dmg')
+        index = index - 1
+        runesubs[index] = 'CD'
+        runesubs.remove('Dmg')
+    if 'Rate' in runesubs:
+        index = runesubs.index('Rate')
+        index = index - 1
+        runesubs[index] = 'CR'
+        runesubs.remove('Rate')
+    if '|' in runesubs:
+        index = runesubs.index('|')
+        runesubs[index] = '1'
+    if any(q in runesubs for q in ['Strong', 'Tenacious', 'Ferocious', 'Powerful', 'Sturdy', 'Durable', 'Quick', 'Mortal', 'Cruel', 'Resistant', 'Intricate']):
+        # print("Innate stat")
+        print(runesubs[0])
+        del runesubs[0]
+        runeinnate = [runesubs[5], runesubs[6]]
+    if 'Rune' in runesubs:
+        index = runesubs.index('Rune')
+        runesubs.remove('Rune')
+        # print(runesubs)
+    # del runesubs[0]
+    # print(runesubs)
+    # del runesubs[0]
+
     if fivestar is not None:
         selltherune = True
         reason = "Five star rune"
@@ -936,15 +996,23 @@ def evalrune():
     if sixstar is not None and runegrade > 2:
         selltherune = False
         reason = "Six star hero+"
-    if sixstar is not None and ('360' in runesubs[4] or '22' in runesubs[4]) and (runeslot == '(2)' or runeslot == '(4)' or runeslot == '(6)'):
+    if sixstar is not None and ('360' in runesubs[3] or '22' in runesubs[3]) and (runeslot == 2 or runeslot == 4 or runeslot == 6):
         selltherune = True
         reason = "Flat main stat"
+        print("xxxxxxxxx")
     if fivestar is not None and 'Swift' in runesubs and 'SPD' in runesubs and runegrade > 2:
         selltherune = False
         reason = "swift with speed"
+    # print(runesubs[0])
+    # print(runesubs[1])
+    # print(runesubs[2])
+    # print(runesubs[3])
+    # print(runesubs[4])
+    # print(runeslot)
+    # time.sleep(40)
     # print("==========================")
     # selltherune = True
-    print(selltherune)
+    # print(selltherune)
     with open("c:\swim\images\pickit.txt", "r") as fp:
         line = fp.readline().strip()
         while line:
@@ -966,13 +1034,19 @@ def evalrune():
             pmain = None
             rightslot = False
             righttype = False
+            rightmain = False
             ppslot = None
-            sellorkeep = False
+            sellorkeep = None
             # print(line)
             pickit = line.split()
             # print(pickit)
             pickit.append('END')
+            cnt = 0
             while pickit[0] != 'END':
+                if sellorkeep is not None:
+                    fp.close()
+
+                # print(pickit[0])
                 pickit[0] = pickit[0].upper()
                 pickit = [x.upper() for x in pickit]
                 pickit = [x.strip() for x in pickit]
@@ -980,14 +1054,21 @@ def evalrune():
                 if '#' in pickit[0]:
                     # print('comment')
                     pickit[0] = 'END'
+                    cnt += 1
                 if 'SELLRUNES' in pickit[0]:
                     sellorkeep = True
+                    pickit[0] = 'END'
+                    cnt += 1
+                if 'KEEPRUNES' in pickit[0]:
+                    sellorkeep = False
+                    pickit[0] = 'END'
+                    cnt += 1
                 if 'MAIN' in pickit:
                     index = pickit.index('MAIN')
                     pmain = pickit[index + 1]
                     del pickit[index + 1]
                     del pickit[index]
-                    print("pmain " + str(pmain))
+                    # print("pmain " + str(pmain))
                 if 'STAR' in pickit:
                     index = pickit.index('STAR')
                     pstar = pickit[index + 1]
@@ -1001,7 +1082,7 @@ def evalrune():
                 if 'TYPE' in pickit:
                     index = pickit.index('TYPE')
                     ptype = pickit[index + 1]
-                    print(str(ptype) + " ptype")
+                    # print(str(ptype) + " ptype")
                     del pickit[index + 1]
                     del pickit[index]
                     # print("ptype" + str(ptype))
@@ -1011,7 +1092,7 @@ def evalrune():
                         ppslot = 'ANY'
                     else:
                         pslot = int(pickit[index + 1])
-                    print("pslot " + str(pslot))
+                    # print("pslot " + str(pslot))
                     del pickit[index + 1]
                     del pickit[index]
                     # print("pslot" + str(pslot))
@@ -1033,7 +1114,7 @@ def evalrune():
                     del pickit[index + 1]
                     del pickit[index]
                 if 'ATK' in pickit[0]:
-                    index = pickit.index('STAR')
+                    index = pickit.index('ATK')
                     patk = int(pickit[index + 1])
                     del pickit[index + 1]
                     del pickit[index]
@@ -1061,12 +1142,12 @@ def evalrune():
                     del pickit[index + 1]
                     del pickit[index]
                     # print("pcr" + str(pcr))
-                if 'Resistance' in pickit:
+                if 'RES' in pickit:
                     pres = int(re.search(r'\d+', pickit[index + 1]).group())
                     del pickit[index + 1]
                     del pickit[index]
                     # print("pres" + str(pres))
-                if 'Accuracy' in pickit:
+                if 'ACC' in pickit:
                     pacc = int(re.search(r'\d+', pickit[index + 1]).group())
                     del pickit[index + 1]
                     del pickit[index]
@@ -1079,21 +1160,21 @@ def evalrune():
             # time.sleep(99)
             if str(runetype).upper() == str(ptype):
                 righttype = True
-                print("right type ptype")
+                # print("right type ptype")
             if str(ptype) == str('ANY'):
-                print("ptype ANY")
+                # print("ptype ANY")
                 righttype = True
             if int(runeslot) == int(pslot):
-                print("right slot pslot")
+                # print("right slot pslot")
                 rightslot = True
             if ppslot == str('ANY'):
-                print("pslot ANY")
+                # print("pslot ANY")
                 rightslot = True
             if str(mainstat) == str(pmain):
-                print("mainstat pmain")
+                # print("mainstat pmain")
                 rightmain = True
             if pmain == 'ANY':
-                print("pmain ANY")
+                # print("pmain ANY")
                 rightmain = True
             if righttype and rightslot and rightmain\
                 and defp >= pdefp and deff >= pdeff and atkp >= patkp and atk >= patk \
@@ -1102,7 +1183,7 @@ def evalrune():
                 selltherune = sellorkeep
                 reason = "Pickit"
                 # breaker = 1
-                print("keeping")
+                print("found in pickit")
                 # time.sleep(1)
             # print(selltherune)
             # print(str(runeslot) + " : " + str(pslot))
@@ -1123,8 +1204,11 @@ def evalrune():
             # if breaker == 1:
                 # break
             line = fp.readline().strip()
-        print(selltherune)
-        time.sleep(40)
+            cnt += 1
+            # print(str(cnt) + " : count")
+    fp.close()
+    print(selltherune)
+    # time.sleep(40)
     if selltherune:
 
         print("Selling rune " + '\n' + str(reason))
@@ -1147,7 +1231,7 @@ def evalrune():
         dt_string = now.strftime("%m/%d/%Y %H:%M:%S")
         seperator = '\t'
         runesubs = runestr.split()
-        file.write(dt_string + " " + str(runeword) + " " + str(runestar) + "* " + converttostr(runesubs, seperator) + "\n")
+        file.write(dt_string + " " + str(runeword) + " " + str(runestar) + "* " + converttostr(runesubs, seperator) + "   " + reason + "\n")
         file.close()
         # print(pyautogui.position())
         # pyautogui.click()
@@ -1167,7 +1251,7 @@ def evalrune():
         dt_string = now.strftime("%m/%d/%Y %H:%M:%S")
         seperator = '\t'
         runesubs = runestr.split()
-        file.write(dt_string + " " + str(runeword) + " " + str(runestar) + "* " + converttostr(runesubs, seperator) + "\n")
+        file.write(dt_string + " " + str(runeword) + " " + str(runestar) + "* " + converttostr(runesubs, seperator) + "   " + reason + "\n")
         file.close()
         # pyautogui.click()
         runeskept += 1
@@ -1267,6 +1351,7 @@ def mainloop():
     runeskept = 0
     currentdung = 0
     whichdung = random.randint(1, 3)
+    # time.sleep(4)
     # evalrune()
     starting()
     lookforpopups()
