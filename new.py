@@ -1076,12 +1076,12 @@ def evalrune():
                     # print("pmain " + str(pmain))
                 if 'STAR' in pickit:
                     index = pickit.index('STAR')
-                    pstar = pickit[index + 1]
+                    pstar = int(pickit[index + 1])
                     del pickit[index + 1]
                     del pickit[index]
                 if 'GRADE' in pickit:
                     index = pickit.index('GRADE')
-                    pgrade = pickit[index + 1]
+                    pgrade = int(pickit[index + 1])
                     del pickit[index + 1]
                     del pickit[index]
                 if 'TYPE' in pickit:
@@ -1163,7 +1163,7 @@ def evalrune():
                     # print("pacc" + str(pacc))
                 if 'SPD' in pickit:
                     index = pickit.index('SPD')
-                    pspd = pickit[index + 1]
+                    pspd = int(pickit[index + 1])
                     del pickit[index + 1]
                     del pickit[index]
                     # print("pspd" + str(pspd))
