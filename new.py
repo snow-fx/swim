@@ -205,7 +205,7 @@ def rundungeons():
     lostbattle = None
     wonbattle = None
     totalruns = 0
-    howmanyruns = random.randint(50, 180)
+    howmanyruns = random.randint(150, 280)
     while totalruns <= howmanyruns:
         lostbattle = pyautogui.locateOnScreen('revive.png', confidence=.9)
         if lostbattle is not None:
@@ -411,7 +411,9 @@ def rundungeons():
             if quiz is not None:
                 print("QUIZ!!!")
                 im1 = pyautogui.screenshot()
-                im1.save(r'c:\swim\images\quizes\quiz' + random.randint(10,10000) +'.png', )
+                x = random.randint(10, 100000)
+                xx = str(x)
+                im1.save(r'c:\swim\images\quizes\quiz' + xx + '.png', )
                 pyautogui.moveTo(quiz)
                 pyautogui.moveRel(465, 440, 1)
                 pyautogui.mouseDown()
@@ -657,7 +659,9 @@ def checkloot():
         if quiz is not None:
             print("QUIZ!!!")
             im1 = pyautogui.screenshot()
-            im1.save(r'c:\swim\images\quizes\quiz' + str(random.randint(10, 10000) + '.png', ))
+            x = random.randint(10,100000)
+            xx = str(x)
+            im1.save(r'c:\swim\images\quizes\quiz' + xx + '.png', )
             pyautogui.moveTo(quiz)
             pyautogui.moveRel(465, 440, 1)
             pyautogui.mouseDown()
@@ -927,7 +931,7 @@ def evalrune():
             spd = runesubs[1]
             del runesubs[1]
             del runesubs[0]
-    showsubs = True
+    showsubs = False
     if showsubs == True:
         print("Rune type : " + runetype)
         print("Rune slot : " + str(runeslot))
@@ -978,7 +982,7 @@ def evalrune():
         runesubs[index] = '1'
     if any(q in runesubs for q in ['Strong', 'Tenacious', 'Ferocious', 'Powerful', 'Sturdy', 'Durable', 'Quick', 'Mortal', 'Cruel', 'Resistant', 'Intricate']):
         # print("Innate stat")
-        print(runesubs[0])
+        # print(runesubs[0])
         del runesubs[0]
         runeinnate = [runesubs[5], runesubs[6]]
     if 'Rune' in runesubs:
@@ -1004,7 +1008,7 @@ def evalrune():
     if sixstar is not None and ('360' in runesubs[3] or '22' in runesubs[3]) and (runeslot == 2 or runeslot == 4 or runeslot == 6):
         selltherune = True
         reason = "Flat main stat"
-        print("xxxxxxxxx")
+        # print("xxxxxxxxx")
     if fivestar is not None and 'Swift' in runesubs and 'SPD' in runesubs and runegrade > 2:
         selltherune = False
         reason = "swift with speed"
@@ -1018,6 +1022,8 @@ def evalrune():
     # print("==========================")
     # selltherune = True
     # print(selltherune)
+    sellorkeep = None
+    breaker = 0
     with open("c:\swim\images\pickit.txt", "r") as fp:
         line = fp.readline().strip()
         while line:
@@ -1041,15 +1047,16 @@ def evalrune():
             righttype = False
             rightmain = False
             ppslot = None
-            sellorkeep = None
             # print(line)
             pickit = line.split()
             # print(pickit)
             pickit.append('END')
             cnt = 0
             while pickit[0] != 'END':
-                if sellorkeep is not None:
-                    fp.close()
+                # if sellorkeep is not None:
+                    # print("found in pickit")
+                    # break
+                    # fp.close()
 
                 # print(pickit[0])
                 pickit[0] = pickit[0].upper()
@@ -1060,13 +1067,48 @@ def evalrune():
                     # print('comment')
                     pickit[0] = 'END'
                     cnt += 1
+                #else:
+                    # file = open("testlog.txt", "a")
+                    # now = datetime.now()
+                    # dt_string = now.strftime("%m/%d/%Y %H:%M:%S")
+                    # seperator = '\t'
+                    # runesubs = runestr.split()
+                    # file.write("%%%%%%%%%%%%%%" + "\n")
+                    # file.write(dt_string + " " + str(runeword) + " " + str(runestar) + "* " + converttostr(runesubs, seperator) + "   " + reason + "\n")
+                    # file.write("slot " + str(runeslot) + " : " + str(pslot))
+                    # file.close()
+                    # print(selltherune)
+                    # print(str(runeslot) + " : " + str(pslot))
+                    #file = open("loglog.txt", "a")
+                    #file.write("type " + str(runetype) + " : " + str(ptype) + "\n")
+                    #file.write("def% " + str(defp) + " : " + str(pdefp) + "\n")
+                    #file.write("deff " + str(deff) + " : " + str(pdeff) + "\n")
+                    #file.write("atk% " + str(atkp) + " : " + str(patkp) + "\n")
+                    #file.write("atk  " + str(atk) + " : " + str(patk) + "\n")
+                    #file.write("hp%  " + str(hpp) + " : " + str(phpp) + "\n")
+                    #file.write("hp   " + str(hp) + " : " + str(php) + "\n")
+                    #file.write("cr   " + str(cr) + " : " + str(pcr) + "\n")
+                    #file.write("cd   " + str(cd) + " : " + str(pcd) + "\n")
+                    #file.write("res  " + str(res) + " : " + str(pres) + "\n")
+                    #file.write("acc  " + str(acc) + " : " + str(pacc) + "\n")
+                    #file.write("spd  " + str(spd) + " : " + str(pspd) + "\n")
+                    #file.write("sell " + str(selltherune) + " : sellorkeep " + str(sellorkeep) + "\n")
+                    #file.write(reason + "\n")
+
+                    #file.close()
+                    # time.sleep(5)
+
+
                 if 'SELLRUNES' in pickit[0]:
+                    # print(sellorkeep)
                     sellorkeep = True # sell if true
                     pickit[0] = 'END'
+                    # print("HEYYOOOOO")
                     cnt += 1
                 if 'KEEPRUNES' in pickit[0]:
                     sellorkeep = False # keep if false
                     pickit[0] = 'END'
+                    # print("HIIIIYAAAAAA")
                     cnt += 1
                 if 'MAIN' in pickit:
                     index = pickit.index('MAIN')
@@ -1186,12 +1228,23 @@ def evalrune():
             if pmain == 'ANY':
                 # print("pmain ANY")
                 rightmain = True
-            if righttype and rightslot and rightmain and defp >= pdefp and deff >= pdeff and atkp >= patkp and atk >= patk \
-                and hpp >= phpp and hp >= php and cr >= pcr and cd >= pcd and res >= pres \
-                and acc >= pacc and spd >= pspd and runegrade >= pgrade and runestar >= pstar:
+
+            if righttype and rightslot and rightmain and int(defp) >= int(pdefp) and int(deff) >= int(pdeff) and int(atkp) >= int(patkp) and int(atk) >= int(patk) \
+                and int(hpp) >= int(phpp) and int(hp) >= int(php) and int(cr) >= int(pcr) and int(cd) >= int(pcd) and int(res) >= int(pres) \
+                and int(acc) >= int(pacc) and int(spd) >= int(pspd) and int(runegrade) >= int(pgrade) and int(runestar) >= int(pstar):
                 selltherune = sellorkeep
+                print("found it")
+                # file = open("pickitlog.txt", "a")
+                # now = datetime.now()
+                # dt_string = now.strftime("%m/%d/%Y %H:%M:%S")
+                # seperator = '\t'
+                # runesubs = runestr.split()
+                # file.write(dt_string + "################" + "\n")
+                # file.write(dt_string + " " + str(runeword) + " " + str(runestar) + "* " + converttostr(runesubs, seperator) + "   " + reason + "\n")
+                # file.close()
+
                 reason = "Pickit"
-                # breaker = 1
+                breaker = 1
                 print("found in pickit")
                 # time.sleep(1)
             # print(selltherune)
@@ -1210,12 +1263,37 @@ def evalrune():
             # print(str(spd) + " : " + str(pspd))
             # print(selltherune)
             # time.sleep(5)
-            # if breaker == 1:
-                # break
+            if breaker == 1:
+                fp.close()
+                break
             line = fp.readline().strip()
+            # if sellorkeep is not None:
+                # fp.close()
+                # break
             cnt += 1
+            print("slot " + str(runeslot) + " : " + str(pslot))
+            # file.close()
+            # print(selltherune)
+            # print(str(runeslot) + " : " + str(pslot))
+            # file = open("loglog.txt", "a")
+            print("type " + str(runetype) + " : " + str(ptype) + "\n")
+            print("def% " + str(defp) + " : " + str(pdefp) + "\n")
+            print("deff " + str(deff) + " : " + str(pdeff) + "\n")
+            print("atk% " + str(atkp) + " : " + str(patkp) + "\n")
+            print("atk  " + str(atk) + " : " + str(patk) + "\n")
+            print("hp%  " + str(hpp) + " : " + str(phpp) + "\n")
+            print("hp   " + str(hp) + " : " + str(php) + "\n")
+            print("cr   " + str(cr) + " : " + str(pcr) + "\n")
+            print("cd   " + str(cd) + " : " + str(pcd) + "\n")
+            print("res  " + str(res) + " : " + str(pres) + "\n")
+            print("acc  " + str(acc) + " : " + str(pacc) + "\n")
+            print("spd  " + str(spd) + " : " + str(pspd) + "\n")
+            print("sell " + str(selltherune) + " : sellorkeep " + str(sellorkeep) + "\n")
+            # file.write(reason + "\n")
+
             # print(str(cnt) + " : count")
     fp.close()
+    print(sellorkeep)
     print(selltherune)
     # time.sleep(40)
     if selltherune:
@@ -1275,9 +1353,17 @@ def evalrune():
         with open('stats.txt', 'w') as conf:
             cfg.write(conf)
 
-        print(str(y) + " alltimeruns")
+        # print(str(y) + " alltimeruns")
 
         x = cfg.get('Stats', 'TotalRunesSold')
+    # file = open("runelog.txt", "a")
+    # now = datetime.now()
+    # dt_string = now.strftime("%m/%d/%Y %H:%M:%S")
+    # seperator = '\t'
+    # runesubs = runestr.split()
+    # file.write(dt_string + " " + str(runeword) + " " + str(runestar) + "* " + converttostr(runesubs, seperator) + "   " + reason + "\n")
+    # file.close()
+
         # print("Reloaded: " + str(x))
 
         # x = cfg.get('Stats', 'TotalRunesSold')
