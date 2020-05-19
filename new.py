@@ -792,6 +792,7 @@ def evalrune():
     runeinnate = None
     innate = ''
     innateis = 0
+    dbg = False
     if fivestar is not None:
         # print("Five Star Rune")
         runestar = 5
@@ -931,8 +932,8 @@ def evalrune():
             spd = runesubs[1]
             del runesubs[1]
             del runesubs[0]
-    showsubs = False
-    if showsubs == True:
+
+    if dbg == True:
         print("Rune type : " + runetype)
         print("Rune slot : " + str(runeslot))
         print("Main Stat : " + mainstat)
@@ -1271,30 +1272,32 @@ def evalrune():
                 # fp.close()
                 # break
             cnt += 1
-            print("slot " + str(runeslot) + " : " + str(pslot))
-            # file.close()
-            # print(selltherune)
-            # print(str(runeslot) + " : " + str(pslot))
-            # file = open("loglog.txt", "a")
-            print("type " + str(runetype) + " : " + str(ptype) + "\n")
-            print("def% " + str(defp) + " : " + str(pdefp) + "\n")
-            print("deff " + str(deff) + " : " + str(pdeff) + "\n")
-            print("atk% " + str(atkp) + " : " + str(patkp) + "\n")
-            print("atk  " + str(atk) + " : " + str(patk) + "\n")
-            print("hp%  " + str(hpp) + " : " + str(phpp) + "\n")
-            print("hp   " + str(hp) + " : " + str(php) + "\n")
-            print("cr   " + str(cr) + " : " + str(pcr) + "\n")
-            print("cd   " + str(cd) + " : " + str(pcd) + "\n")
-            print("res  " + str(res) + " : " + str(pres) + "\n")
-            print("acc  " + str(acc) + " : " + str(pacc) + "\n")
-            print("spd  " + str(spd) + " : " + str(pspd) + "\n")
-            print("sell " + str(selltherune) + " : sellorkeep " + str(sellorkeep) + "\n")
+            if dbg == True:
+                print("slot " + str(runeslot) + " : " + str(pslot))
+                # file.close()
+                # print(selltherune)
+                # print(str(runeslot) + " : " + str(pslot))
+                # file = open("loglog.txt", "a")
+                print("type " + str(runetype) + " : " + str(ptype) + "\n")
+                print("def% " + str(defp) + " : " + str(pdefp) + "\n")
+                print("deff " + str(deff) + " : " + str(pdeff) + "\n")
+                print("atk% " + str(atkp) + " : " + str(patkp) + "\n")
+                print("atk  " + str(atk) + " : " + str(patk) + "\n")
+                print("hp%  " + str(hpp) + " : " + str(phpp) + "\n")
+                print("hp   " + str(hp) + " : " + str(php) + "\n")
+                print("cr   " + str(cr) + " : " + str(pcr) + "\n")
+                print("cd   " + str(cd) + " : " + str(pcd) + "\n")
+                print("res  " + str(res) + " : " + str(pres) + "\n")
+                print("acc  " + str(acc) + " : " + str(pacc) + "\n")
+                print("spd  " + str(spd) + " : " + str(pspd) + "\n")
+                print("sell " + str(selltherune) + " : sellorkeep " + str(sellorkeep) + "\n")
             # file.write(reason + "\n")
 
             # print(str(cnt) + " : count")
     fp.close()
-    print(sellorkeep)
-    print(selltherune)
+    if dbg == True:
+        print(sellorkeep)
+        print(selltherune)
     # time.sleep(40)
     if selltherune:
 
