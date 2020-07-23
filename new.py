@@ -788,10 +788,12 @@ def evalrune():
     res = 0
     acc = 0
     spd = 0
+    runegrade = 0
     selltherune = True
     runeinnate = None
     innate = ''
     innateis = 0
+    runestar = 0
     dbg = False
     if fivestar is not None:
         # print("Five Star Rune")
@@ -815,6 +817,7 @@ def evalrune():
     # print(runestr)
     runesubs = runestr.split()
     runesubs.append('End')
+
     if 'Dmg' in runesubs:
         index = runesubs.index('Dmg')
         index = index - 1
@@ -827,7 +830,7 @@ def evalrune():
         runesubs.remove('Rate')
     # print(index)
     # print("Rune Drop:")
-    # print(runesubs)
+    print(runesubs)
     if '|' in runesubs:
         index = runesubs.index('|')
         runesubs[index] = '1'
@@ -865,6 +868,17 @@ def evalrune():
         index = runesubs.index('Rune')
         runesubs.remove('Rune')
         # print(runesubs)
+    if 'Dmg' in runesubs:
+        index = runesubs.index('Dmg')
+        index = index - 1
+        runesubs[index] = 'CD'
+        runesubs.remove('Dmg')
+    if 'Rate' in runesubs:
+        index = runesubs.index('Rate')
+        index = index - 1
+        runesubs[index] = 'CR'
+        runesubs.remove('Rate')
+
     del runesubs[0]
     # print(runesubs)
     del runesubs[0]
@@ -874,6 +888,11 @@ def evalrune():
     mainsub = runesubs[1]
     #print(mainsub)
     #print(runeslot)
+    # if 'Rate' in mainstat:
+    #     mainstat = "CR"
+    # if 'Dmg' in mainstat:
+    #     mainstat = "CD"
+    #     mainstat =
     if '%' in mainsub:
         mainstat = mainstat + "%"
         # print(mainstat)
@@ -990,29 +1009,32 @@ def evalrune():
         index = runesubs.index('Rune')
         runesubs.remove('Rune')
         # print(runesubs)
+    # if 'CRI' in runesubs:
+        # index = runesubs.index('CRI')
+        # runesubs.remove('CRI')
     # del runesubs[0]
     # print(runesubs)
     # del runesubs[0]
-
+    reason = "Subs off"
     if fivestar is not None:
         selltherune = True
         reason = "Five star rune"
-    if sixstar is not None and runegrade > 2:
-        selltherune = False
-        reason = "Six star hero+"
+    # if sixstar is not None and runegrade > 2:
+        # selltherune = False
+        # reason = "Six star hero+"
     if sixstar is not None and runegrade == 2:
         selltherune = True
         reason = "Six star blue"
-    if sixstar is not None and runegrade > 2:
-        selltherune = False
-        reason = "Six star hero+"
+    # if sixstar is not None and runegrade > 2:
+        # selltherune = False
+        # reason = "Six star hero+"
     if sixstar is not None and ('360' in runesubs[3] or '22' in runesubs[3]) and (runeslot == 2 or runeslot == 4 or runeslot == 6):
         selltherune = True
         reason = "Flat main stat"
         # print("xxxxxxxxx")
-    if fivestar is not None and 'Swift' in runesubs and 'SPD' in runesubs and runegrade > 2:
-        selltherune = False
-        reason = "swift with speed"
+    # if fivestar is not None and 'Swift' in runesubs and 'SPD' in runesubs and runegrade > 2:
+        # selltherune = False
+        # reason = "swift with speed"
     # print(runesubs[0])
     # print(runesubs[1])
     # print(runesubs[2])
@@ -1138,6 +1160,7 @@ def evalrune():
                     index = pickit.index('SLOT')
                     if pickit[index + 1] == 'ANY':
                         ppslot = 'ANY'
+                        rightslot = True
                     else:
                         pslot = int(pickit[index + 1])
                     # print("pslot " + str(pslot))
@@ -1243,10 +1266,11 @@ def evalrune():
                 # file.write(dt_string + "################" + "\n")
                 # file.write(dt_string + " " + str(runeword) + " " + str(runestar) + "* " + converttostr(runesubs, seperator) + "   " + reason + "\n")
                 # file.close()
-
                 reason = "Pickit"
                 breaker = 1
                 print("found in pickit")
+            else:
+                reason = "Pickit"
                 # time.sleep(1)
             # print(selltherune)
             # print(str(runeslot) + " : " + str(pslot))
@@ -1278,22 +1302,26 @@ def evalrune():
                 # print(selltherune)
                 # print(str(runeslot) + " : " + str(pslot))
                 # file = open("loglog.txt", "a")
-                print("type " + str(runetype) + " : " + str(ptype) + "\n")
-                print("def% " + str(defp) + " : " + str(pdefp) + "\n")
-                print("deff " + str(deff) + " : " + str(pdeff) + "\n")
-                print("atk% " + str(atkp) + " : " + str(patkp) + "\n")
-                print("atk  " + str(atk) + " : " + str(patk) + "\n")
-                print("hp%  " + str(hpp) + " : " + str(phpp) + "\n")
-                print("hp   " + str(hp) + " : " + str(php) + "\n")
-                print("cr   " + str(cr) + " : " + str(pcr) + "\n")
-                print("cd   " + str(cd) + " : " + str(pcd) + "\n")
-                print("res  " + str(res) + " : " + str(pres) + "\n")
-                print("acc  " + str(acc) + " : " + str(pacc) + "\n")
-                print("spd  " + str(spd) + " : " + str(pspd) + "\n")
+                print("type " + str(runetype) + " : " + str(ptype))
+                print("main " + str(mainstat) + " : " + str(pmain))
+                print("def% " + str(defp) + " : " + str(pdefp))
+                print("deff " + str(deff) + " : " + str(pdeff))
+                print("atk% " + str(atkp) + " : " + str(patkp))
+                print("atk  " + str(atk) + " : " + str(patk))
+                print("hp%  " + str(hpp) + " : " + str(phpp))
+                print("hp   " + str(hp) + " : " + str(php))
+                print("cr   " + str(cr) + " : " + str(pcr))
+                print("cd   " + str(cd) + " : " + str(pcd))
+                print("res  " + str(res) + " : " + str(pres))
+                print("acc  " + str(acc) + " : " + str(pacc))
+                print("spd  " + str(spd) + " : " + str(pspd))
+                print("grade " + str(runegrade) + " : " + str(pgrade))
+                print("stars " + str(runestar) + " : " + str(pstar))
+                print("reason : " + str(reason))
                 print("sell " + str(selltherune) + " : sellorkeep " + str(sellorkeep) + "\n")
             # file.write(reason + "\n")
 
-            # print(str(cnt) + " : count")
+                # print("count : " + str(cnt))
     fp.close()
     if dbg == True:
         print(sellorkeep)
@@ -1319,7 +1347,8 @@ def evalrune():
         file = open("runelogsold.txt", "a")
         now = datetime.now()
         dt_string = now.strftime("%m/%d/%Y %H:%M:%S")
-        seperator = '\t'
+        #seperator = '\t'
+        seperator = ' '
         runesubs = runestr.split()
         file.write(dt_string + " " + str(runeword) + " " + str(runestar) + "* " + converttostr(runesubs, seperator) + "   " + reason + "\n")
         file.close()
@@ -1339,7 +1368,8 @@ def evalrune():
         file = open("runelog.txt", "a")
         now = datetime.now()
         dt_string = now.strftime("%m/%d/%Y %H:%M:%S")
-        seperator = '\t'
+        # seperator = '\t'
+        seperator = ' '
         runesubs = runestr.split()
         file.write(dt_string + " " + str(runeword) + " " + str(runestar) + "* " + converttostr(runesubs, seperator) + "   " + reason + "\n")
         file.close()
