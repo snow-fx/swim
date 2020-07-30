@@ -1252,7 +1252,84 @@ def evalrune():
             if pmain == 'ANY':
                 # print("pmain ANY")
                 rightmain = True
+            if pmain == None:
+                rightmain = True
+            if ptype == None:
+                righttype = True
+            if pslot == None:
+                rightslot = True
+            if dbg == True:
+                print("righttype: " + str(righttype))
+                print("rightslot: " + str(rightslot))
+                print("rightmain: " + str(rightmain))
 
+                if int(defp) >= int(pdefp):
+                    print("defp: True")
+                else:
+                    print("defp: False")
+
+                if int(deff) >= int(pdeff):
+                    print("deff: True")
+                else:
+                    print("deff: False")
+
+                if int(atkp) >= int(patkp):
+                    print("atkp: True")
+                else:
+                    print("atkp: False")
+
+                if int(atk) >= int(patk):
+                    print("atk: True")
+                else:
+                    print("atk: False")
+
+                if int(hpp) >= int(phpp):
+                    print("hpp: True")
+                else:
+                    print("hpp: False")
+
+                if int(hp) >= int(php):
+                    print("hp: True")
+                else:
+                    print("hp: False")
+
+                if int(cr) >= int(pcr):
+                    print("cr: True")
+                else:
+                    print("cr: False")
+
+                if int(cd) >= int(pcd):
+                    print("cd: True")
+                else:
+                    print("cd: False")
+
+                if int(res) >= int(pres):
+                    print("res: True")
+                else:
+                    print("res: False")
+
+                if int(acc) >= int(pacc):
+                    print("acc: True")
+                else:
+                    print("acc: False")
+
+                if int(spd) >= int(pspd):
+                    print("spd: True")
+                else:
+                    print("spd: False")
+
+                if int(runegrade) >= int(pgrade):
+                    print("runegrade: True")
+                else:
+                    print("runegrade: False")
+
+                if int(runestar) >= int(pstar):
+                    print("runestar: True")
+                else:
+                    print("runestar: False")
+
+            if righttype and rightslot and rightmain and pdefp == 0 and pdeff == 0 and patkp == 0 and patk == 0 and phpp == 0 and php == 0 and pcr == 0 and pcd == 0 and pres == 0 and pacc == 0 and pspd == 0 and pgrade == 0 and pstar == 0:
+                selltherune = True
             if righttype and rightslot and rightmain and int(defp) >= int(pdefp) and int(deff) >= int(pdeff) and int(atkp) >= int(patkp) and int(atk) >= int(patk) \
                 and int(hpp) >= int(phpp) and int(hp) >= int(php) and int(cr) >= int(pcr) and int(cd) >= int(pcd) and int(res) >= int(pres) \
                 and int(acc) >= int(pacc) and int(spd) >= int(pspd) and int(runegrade) >= int(pgrade) and int(runestar) >= int(pstar):
@@ -1323,10 +1400,12 @@ def evalrune():
 
                 # print("count : " + str(cnt))
     fp.close()
-    if dbg == True:
-        print(sellorkeep)
-        print(selltherune)
+    # if dbg == True:
+        # print(sellorkeep)
+        # print(selltherune)
     # time.sleep(40)
+    if righttype and rightslot and rightmain and pdefp == 0 and pdeff == 0 and patkp == 0 and patk == 0 and phpp == 0 and php == 0 and pcr == 0 and pcd == 0 and pres == 0 and pacc == 0 and pspd == 0 and pgrade == 0 and pstar == 0:
+        selltherune = True
     if selltherune:
 
         print("Selling rune " + '\n' + str(reason))
